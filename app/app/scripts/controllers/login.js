@@ -3,6 +3,7 @@ angular.module('Dirapp')
     'use strict';
 
     Usuario.login.get(function (data) {
+        console.log(data);
         if (data.login === true) {
             if (data.userData.rol == "admin") {
                 $location.path("/admin");
