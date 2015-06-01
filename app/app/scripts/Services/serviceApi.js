@@ -4,7 +4,7 @@ angular.module('SerFlugel', ['ngResource'])
 	return {
 		version : "0.2.1",
 		ip: location.hostname,
-		port: 3000
+		port: 3001
 	};
 })
 .factory('Docente',['$resource', 'Config', function ContenidoFactory($resource, Config){

@@ -28,7 +28,7 @@ angular.module('Dirapp')
 
     $scope.checked = true; // variable que inabilita el form
     $scope.asist = true;
-    $scope.estudiantes = {};
+    $scope.estudiantes = [];
     $scope.idClase = $stateParams.idclase;
     Docente.estudiantes.query({idclase: $scope.idClase}, function(data){
         $scope.estudiantes = data;

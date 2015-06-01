@@ -1,10 +1,11 @@
 angular.module('Dirapp')
-.controller('LandingCtrl', ['$scope', '$mdDialog', '$location', '$cookieStore', 'Usuario', function($scope, $mdDialog, $location, $cookieStore, Usuario) {
+.controller('LandingCtrl', ['$scope', '$mdDialog', '$location', '$cookies', 'Usuario', function($scope, $mdDialog, $location, $cookies, Usuario) {
     'use strict';
 
     Usuario.login.get(function (data) {
         console.log(data);
-        console.log($cookieStore.get('session'));
+        var hola = $cookies.get('session');
+        console.log(hola);
         if (data.login === true) {
             if (data.userData.rol == "admin") {
                 $location.path("/admin");
@@ -43,7 +44,7 @@ angular.module('Dirapp')
     };
 }]);
 
-function LoginCtrl($scope, Usuario, $location, $mdDialog, $cookieStore) {
+function LoginCtrl($scope, Usuario, $location, $mdDialog, $cookies) {
     $scope.form = {};
     $scope.userAlert = false;
     $scope.passAlert = false;
@@ -55,7 +56,7 @@ function LoginCtrl($scope, Usuario, $location, $mdDialog, $cookieStore) {
         // Validar el tipo de usuario (Docente, admin, etc)
         Usuario.login.save($scope.form, function(data){
             console.log(data);
-            $cookieStore.put('session', data.id_session);
+            $cookies.put('session', data.id_session);
             //res.cookie('session', id_session); // problema con cookies solucionar con angular
             $mdDialog.hide();
             if (data.login && data.userData) {

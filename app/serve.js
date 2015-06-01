@@ -1,7 +1,7 @@
 var express = require('express'),
  	app = express(),
  	cors = require('cors'),
- 	port = 3001;
+ 	port = 3000;
 
 var http = require('http').Server(app);
 

@@ -19,18 +19,6 @@ angular.module('CDapp',[
     .dark()
     .accentPalette('blue');
 })
-.config(['$httpProvider', function($httpProvider) {
-    $httpProvider.interceptors.push(function () {
-        return {
-          request : function (config) {
-              var token = 'pelotudeces';
-              config.headers['Authorization'] = token;
-              console.log('susi');
-              return config;
-            }
-        };
-    });
-}])
 .config(function($stateProvider, $urlRouterProvider) {
 
     // For any unmatched url, redirect to /state1
@@ -102,5 +90,24 @@ angular.module('CDapp',[
         url: "/calificaciones?idcalificacion",
         templateUrl: "views/estudiantes/calificaciones.html",
         controller: 'CalificacionCtrl'
-    })
-});
+    });
+})
+.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.interceptors.push(['$cookies', '$location', '$q', function ($cookies, $location, $q) {
+        return {
+          request : function (config) {
+              if ($cookies.get('session')) {
+                  config.headers['Authorization'] = $cookies.get('session');
+              }
+              return config;
+          },
+        //   responseError: function(response) {
+        //       if(response.status === 401 || response.status === 403) {
+        //           console.log('redirigido');
+        //           $location.path('/login');
+        //       }
+        //       return $q.reject(response);
+        //   }
+        };
+    }]);
+}]);
