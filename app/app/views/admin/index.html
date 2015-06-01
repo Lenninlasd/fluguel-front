@@ -3,14 +3,18 @@
     <div layout="column" flex>
         <simple-toolbar style="z-index:61"></simple-toolbar>
         <section layout="row" flex>
-            <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-                <div style="margin-top:5%">
-                    <ul style="padding:0">
-                        <li><md-button style="width:100%;margin:0;padding:0"ng-href="{{googleUrl}}" target="_blank">Default Link</md-button></li>
-                        <li><md-button style="width:100%;margin:0;padding:0"ng-href="{{googleUrl}}" target="_blank">Default Link</md-button></li>
-                        <li><md-button style="width:100%;margin:0;padding:0"ng-href="{{googleUrl}}" target="_blank">Default Link</md-button></li>
-                        <li><md-button style="width:100%;margin:0;padding:0"ng-href="{{googleUrl}}" target="_blank">Default Link</md-button></li>
-                        <li><md-button style="width:100%;margin:0;padding:0"ng-href="{{googleUrl}}" target="_blank">Default Link</md-button></li>
+            <md-sidenav class="md-sidenav-left md-whiteframe-z2-custom" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" style="background:rgb(20, 76, 135);">
+                <div style="margin-top:50px">
+                    <ul class="menu-list">
+                        <li><md-button ng-href="{{googleUrl}}" target="_blank"><i class="fa fa-list-ul fa-lg"></i>&nbsp Cursos</md-button></li>
+                        <li>
+                            <md-button ng-href="{{googleUrl}}" target="_blank">
+                                <i class="fa fa-child"></i><i class="fa fa-child fa-lg"></i> Estudiantes
+                            </md-button>
+                        </li>
+                        <li><md-button ng-href="{{googleUrl}}" target="_blank"><i class="fa fa-users fa-lg"></i>&nbsp Docentes</md-button></li>
+                        <li><md-button ng-href="{{googleUrl}}" target="_blank"><i class="fa fa-pie-chart fa-lg"></i>&nbsp Estadisticas</md-button></li>
+                        <li><md-button ng-href="{{googleUrl}}" target="_blank"><i class="fa fa-sliders fa-lg"></i>&nbsp Administracion</md-button></li>
                     </ul>
                 </div>
             </md-sidenav>
