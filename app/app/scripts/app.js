@@ -19,7 +19,18 @@ angular.module('CDapp',[
     .dark()
     .accentPalette('blue');
 })
-
+.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.interceptors.push(function () {
+        return {
+          request : function (config) {
+              var token = 'pelotudeces';
+              config.headers['Authorization'] = token;
+              console.log('susi');
+              return config;
+            }
+        };
+    });
+}])
 .config(function($stateProvider, $urlRouterProvider) {
 
     // For any unmatched url, redirect to /state1
