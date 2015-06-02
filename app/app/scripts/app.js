@@ -90,6 +90,12 @@ angular.module('CDapp',[
         url: "/calificaciones?idcalificacion",
         templateUrl: "views/estudiantes/calificaciones.html",
         controller: 'CalificacionCtrl'
+    })
+
+    // Anillo Admin
+    .state('admin.a', {
+        url: "/cursos?idcurso",
+        templateUrl: "views/admin/listaEstudiantes.html"
     });
 })
 .config(['$httpProvider', function($httpProvider) {
