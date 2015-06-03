@@ -40,7 +40,7 @@ angular.module('CDapp',[
     .state('admin', {
         url:"/admin",
         templateUrl: "views/admin/index.html",
-        controller: "adminCtrl"
+        controller: "AdminCtrl"
     })
     .state('login', {
         url: "/login",
@@ -93,9 +93,10 @@ angular.module('CDapp',[
     })
 
     // Anillo Admin
-    .state('admin.a', {
+    .state('admin.cursos', {
         url: "/cursos?idcurso",
-        templateUrl: "views/admin/listaEstudiantes.html"
+        templateUrl: "views/admin/listaEstudiantes.html",
+        controller: 'ListaEstudiantesCtrl'
     });
 })
 .config(['$httpProvider', function($httpProvider) {

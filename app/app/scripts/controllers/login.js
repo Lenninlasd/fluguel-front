@@ -34,10 +34,11 @@ angular.module('Dirapp')
 
 
 }])
-.controller('logoutCtrl', ['$scope', '$location', 'Usuario', function ($scope, $location, Usuario) {
+.controller('logoutCtrl', ['$scope', '$location', '$cookies', 'Usuario', function ($scope, $location, $cookies, Usuario) {
     $scope.logout = function () {
         Usuario.logout.save(function(data){
             if (!data.login) {
+                $cookies.remove('session');
                 $location.path("/login");
             }
         });

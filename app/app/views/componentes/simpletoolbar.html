@@ -1,7 +1,13 @@
 <md-toolbar md-theme="top" class="md-whiteframe-z2">
     <div layout="row" class="md-toolbar-tools">
-        <a  flex-gt-sm="30" class="navbar-brand" href="#/Docente" style="color:#144c87; font-size:1.6em; margin-left: 50px;margin-right: 80px;">
-            <img class="site-logo" ng-src="images/flugels.png">Flügel
+        <div ng-click="toggleSidenav('left')" flex="10"  hide-gt-sm>
+            <a href=""><i class="fa fa-bars fa-lg"></i></a>
+        </div>
+        <a  layout="row" flex-gt-sm="30" class="navbar-brand" href="#/Docente" style="color:#144c87; font-size:1.6em;margin-right: 80px;padding-left: 30px;">
+            <div flex="25" flex-gt-lg="15" >
+                <img hide-sm class="site-logo" ng-src="images/flugels.png">
+            </div>
+            <div flex="75" flex-sm="100" flex-gt-lg="85" >Flügel</div>
         </a>
 
         <div flex-sm="35" flex layout="row" layout-align="end center" ng-controller="logoutCtrl">

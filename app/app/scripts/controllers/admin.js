@@ -1,5 +1,5 @@
 angular.module('Dirapp')
-.controller('adminCtrl',['$scope','$mdSidenav', '$location', 'Usuario', 'Coordinador', '$state', function ($scope,$mdSidenav, $location, Usuario, Coordinador, $state){
+.controller('AdminCtrl',['$scope','$mdSidenav', '$location', 'Usuario', 'Coordinador', '$state', function ($scope,$mdSidenav, $location, Usuario, Coordinador, $state){
 
     // Valida que la sesion haya iniciado
     Usuario.login.get(function (data) {
@@ -21,5 +21,19 @@ angular.module('Dirapp')
     },function(data){
         console.log(data);
     });
+
+    $scope.toggleSidenav = function(menuId) {
+        $mdSidenav(menuId).toggle();
+    };
+
+}])
+.controller('ListaEstudiantesCtrl',['$scope', '$location', 'Usuario', 'Coordinador', '$stateParams', function ($scope, $location, Usuario, Coordinador, $stateParams){
+
+    var idcurso = $stateParams.idcurso;
+    $scope.estudiantes = [];
+    Coordinador.estudiantes.query({idcurso: idcurso}, function (estudiantes) {
+        console.log(estudiantes);
+        $scope.estudiantes = estudiantes;
+    })
 
 }]);

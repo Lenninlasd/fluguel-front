@@ -3,8 +3,8 @@
     <div layout="column" flex>
         <simple-toolbar style="z-index:61"></simple-toolbar>
         <section layout="row" flex>
-            <md-sidenav class="md-sidenav-left md-whiteframe-z2-custom" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" style="background:rgb(20, 76, 135);">
-                <div style="margin-top:50px">
+            <md-sidenav md-swipe-left="toggleSidenav('left')" flex class="md-sidenav-left md-whiteframe-z2-custom" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" style="background:rgb(20, 76, 135);">
+                <div style="margin-top:80px">
                     <ul class="menu-list">
                         <li><md-button ng-href="{{googleUrl}}" target="_blank"><i class="fa fa-list-ul fa-lg"></i>&nbsp Cursos</md-button></li>
                         <li>
@@ -19,7 +19,7 @@
                 </div>
             </md-sidenav>
 
-            <md-content flex class="board" style="margin-top:20px">
+            <md-content flex class="board" style="margin-top:20px"  md-swipe-right="toggleSidenav('left')">
                 <div flex layout="row" layout-align="center center" layout-margin>
                     <md-card flex-sm="100" flex="80">
                         <input  class="btn input-lg cls-input" placeholder="Busqueda de cursos, docentes, alumnos" ng-model="user.title">
@@ -35,10 +35,10 @@
                 </div>
                 <div layout="row" flex layout-wrap layout-padding layout-align="center center">
 
-                    <div layout="row" layout-wrap ng-repeat="grado in grados" layout-align="center center"><!-- flex-sm="100" flex-md="35"  flex-gt-lg="25" flex="30" -->
+                    <div layout="row" layout-wrap ng-repeat="grado in grados" layout-align="center center">
                         <div flex-md="90" layout-margin ng-repeat="curso in cursos | filter:{nombre_curso:grado}:true | orderBy:'nombre_curso':true">
                             <div class="hover-card md-whiteframe-z1" style="background: url('images/textures/symphony2.png')">
-                                <a class="text-center text-muted" flex  ng-click="close()"  href="">
+                                <a class="text-center text-muted" flex  ng-click=""  ui-sref="admin.cursos({idcurso: curso.id_curso})">
                                     <div layout-padding style="background-color: {{curso.color}};">
                                         <h2 class="md-headline" style="color:white;margin-top: 10px;text-shadow:1px 2px 6px #000000">
                                             {{curso.nombre_curso}} <span ng-show="curso.indice">-</span> {{curso.indice}}

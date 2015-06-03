@@ -2,7 +2,7 @@ angular.module('SerFlugel', ['ngResource'])
 
 .factory('Config', function () {
 	return {
-		version : "0.2.1",
+		version : "0.2.2",
 		ip: location.hostname,
 		port: 3001
 	};
