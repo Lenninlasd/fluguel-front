@@ -6,55 +6,29 @@
             <md-sidenav md-swipe-left="toggleSidenav('left')" flex class="md-sidenav-left md-whiteframe-z2-custom" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" style="background:rgb(20, 76, 135);">
                 <div style="margin-top:80px">
                     <ul class="menu-list">
-                        <li><md-button ng-href="{{googleUrl}}" target="_blank"><i class="fa fa-list-ul fa-lg"></i>&nbsp Cursos</md-button></li>
                         <li>
-                            <md-button ng-href="{{googleUrl}}" target="_blank">
+                            <md-button ui-sref="admin.cursos" ui-sref-active="active" ng-click="hideChildMenu()"><i class="fa fa-list-ul fa-lg"></i>&nbsp Cursos</md-button>
+                            <ul class="menu-list menu-toggle-list" ng-show="subMenu">
+                                <li ng-repeat="curso in cursos | orderBy:['nombre_curso', indice]">
+                                    <md-button ui-sref="admin.estudiantes({idcurso: curso.id_curso})" ui-sref-active="active">
+                                        {{curso.nombre_curso}} <span ng-show="curso.indice">-</span> {{curso.indice}}
+                                    </md-button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <md-button ui-sref-active="active" ng-href="{{googleUrl}}">
                                 <i class="fa fa-child"></i><i class="fa fa-child fa-lg"></i> Estudiantes
                             </md-button>
                         </li>
-                        <li><md-button ng-href="{{googleUrl}}" target="_blank"><i class="fa fa-users fa-lg"></i>&nbsp Docentes</md-button></li>
-                        <li><md-button ng-href="{{googleUrl}}" target="_blank"><i class="fa fa-pie-chart fa-lg"></i>&nbsp Estadisticas</md-button></li>
-                        <li><md-button ng-href="{{googleUrl}}" target="_blank"><i class="fa fa-sliders fa-lg"></i>&nbsp Administracion</md-button></li>
+                        <li><md-button ui-sref-active="active" ng-href="{{googleUrl}}"><i class="fa fa-users fa-lg"></i>&nbsp Docentes</md-button></li>
+                        <li><md-button ui-sref-active="active" ng-href="{{googleUrl}}"><i class="fa fa-pie-chart fa-lg"></i>&nbsp Estadisticas</md-button></li>
+                        <li><md-button ui-sref-active="active" ng-href="{{googleUrl}}"><i class="fa fa-sliders fa-lg"></i>&nbsp Administracion</md-button></li>
                     </ul>
                 </div>
             </md-sidenav>
 
             <md-content flex class="board" style="margin-top:20px"  md-swipe-right="toggleSidenav('left')">
-                <div flex layout="row" layout-align="center center" layout-margin>
-                    <md-card flex-sm="100" flex="80">
-                        <input  class="btn input-lg cls-input" placeholder="Busqueda de cursos, docentes, alumnos" ng-model="user.title">
-                    </md-card>
-                </div>
-
-                <div layout="row" flex layout-align="center center" class="text-center" layout-margin>
-                    <md-card layout="row" style="padding:1%" flex-sm="100" flex="80">
-                        <h3 style="margin:0" flex> 23% <br><small class="md-caption">Progreso</small></h3>
-                        <h3 style="margin:0" flex> 3%  <br><small class="md-caption">Inasistencias</small></h3>
-                        <h3 style="margin:0" flex> 4,3 <br><small class="md-caption">Promedio de notas</small></h3>
-                    </md-card>
-                </div>
-                <div layout="row" flex layout-wrap layout-padding layout-align="center center">
-
-                    <div layout="row" layout-wrap ng-repeat="grado in grados" layout-align="center center">
-                        <div flex-md="90" layout-margin ng-repeat="curso in cursos | filter:{nombre_curso:grado}:true | orderBy:'nombre_curso':true">
-                            <div class="hover-card md-whiteframe-z1" style="background: url('images/textures/symphony2.png')">
-                                <a class="text-center text-muted" flex  ng-click=""  ui-sref="admin.cursos({idcurso: curso.id_curso})">
-                                    <div layout-padding style="background-color: {{curso.color}};">
-                                        <h2 class="md-headline" style="color:white;margin-top: 10px;text-shadow:1px 2px 6px #000000">
-                                            {{curso.nombre_curso}} <span ng-show="curso.indice">-</span> {{curso.indice}}
-                                        </h2>
-                                        <strong class="md-subhead"><span ng-show="curso.id_profesor">Docente tutor:</span>{{curso.id_profesor}}</strong>
-                                    </div>
-                                    <div layout="row" layout-align="center center" class="text-center" style="background: #eee;padding:1%">
-                                        <div flex> 23% <br><small>Progreso</small></div>
-                                        <div flex> 3%  <br><small>Inasistencias</small></div>
-                                        <div flex> 4,3 <br><small>Promedio de notas</small></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div ui-view></div>
             </md-content>
         </section>

@@ -94,7 +94,11 @@ angular.module('CDapp',[
 
     // Anillo Admin
     .state('admin.cursos', {
-        url: "/cursos?idcurso",
+        url: "/cursos",
+        templateUrl: "views/admin/cursos.html"
+    })
+    .state('admin.estudiantes', {
+        url: "/estudiantes?idcurso",
         templateUrl: "views/admin/listaEstudiantes.html",
         controller: 'ListaEstudiantesCtrl'
     });

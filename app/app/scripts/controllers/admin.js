@@ -1,5 +1,11 @@
 angular.module('Dirapp')
+.factory('MenuAdmin', function() {
+    return {
+      subMenu: false
+    };
+})
 .controller('AdminCtrl',['$scope','$mdSidenav', '$location', 'Usuario', 'Coordinador', '$state', function ($scope,$mdSidenav, $location, Usuario, Coordinador, $state){
+    $scope.subMenu = false;
 
     // Valida que la sesion haya iniciado
     Usuario.login.get(function (data) {
@@ -22,17 +28,38 @@ angular.module('Dirapp')
         console.log(data);
     });
 
+    $scope.showChildMenu = function(){
+        var nameMenu = $location.$$path.split("/")[2];
+        console.log(nameMenu);
+        if (nameMenu == 'estudiantes') {
+            $scope.subMenu = true;
+        }else {
+            $scope.subMenu = false;
+        }
+    }
+    $scope.showChildMenu();
+
+    $scope.hideChildMenu = function(){
+        $scope.subMenu = false;
+    }
+
     $scope.toggleSidenav = function(menuId) {
         $mdSidenav(menuId).toggle();
     };
 
 }])
 .controller('ListaEstudiantesCtrl',['$scope', '$location', 'Usuario', 'Coordinador', '$stateParams', function ($scope, $location, Usuario, Coordinador, $stateParams){
+    $scope.subMenu = false;
+    var nameMenu = $location.$$path.split("/")[2];
+    console.log(nameMenu);
+    if (nameMenu == 'estudiantes') {
+        $scope.subMenu = true;
+    }
 
     var idcurso = $stateParams.idcurso;
+
     $scope.estudiantes = [];
     Coordinador.estudiantes.query({idcurso: idcurso}, function (estudiantes) {
-        console.log(estudiantes);
         $scope.estudiantes = estudiantes;
     })
 
