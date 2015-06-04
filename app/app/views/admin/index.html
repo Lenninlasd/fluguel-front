@@ -1,26 +1,29 @@
 <div layout="row" flex>
 
     <div layout="column" flex>
-        <simple-toolbar style="z-index:61"></simple-toolbar>
+        <md-toolbar md-theme="top" class="md-whiteframe-z2">
+            <simple-toolbar></simple-toolbar>
+        </md-toolbar>
+
         <section layout="row" flex>
             <md-sidenav md-swipe-left="toggleSidenav('left')" flex class="md-sidenav-left md-whiteframe-z2-custom" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" style="background:rgb(20, 76, 135);">
-                <div style="margin-top:80px">
+                <div style="margin-top:20px">
                     <ul class="menu-list">
                         <li>
-                            <md-button ui-sref="admin.cursos" ui-sref-active="active" ng-click="hideChildMenu()"><i class="fa fa-list-ul fa-lg"></i>&nbsp Cursos</md-button>
+                            <md-button ui-sref="admin.cursos" ui-sref-active="active" ng-click="hideChildMenu()" class="a-menu"><i class="fa fa-list-ul fa-lg"></i>&nbsp Cursos</md-button>
                             <ul class="menu-list menu-toggle-list" ng-show="subMenu">
-                                <li ng-repeat="curso in cursos | orderBy:['nombre_curso', indice]">
-                                    <md-button ui-sref="admin.estudiantes({idcurso: curso.id_curso})" ui-sref-active="active">
-                                        {{curso.nombre_curso}} <span ng-show="curso.indice">-</span> {{curso.indice}}
+                                <li ng-repeat="curso in cursos | orderBy:['grado', indice]">
+                                    <md-button ui-sref="admin.estudiantes({idcurso: curso.id_curso})" ui-sref-active="active" class="a-menu">
+                                        {{curso.grado}} {{curso.nombre_curso}} <span ng-show="curso.indice">-</span> {{curso.indice}}
                                     </md-button>
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <md-button ui-sref-active="active" ng-href="{{googleUrl}}">
+                        <!-- <li>
+                            <md-button ui-sref-active="active" ui-sref="admin.estudiantes" ng-click="showChildMenu()" class="a-menu">
                                 <i class="fa fa-child"></i><i class="fa fa-child fa-lg"></i> Estudiantes
                             </md-button>
-                        </li>
+                        </li> -->
                         <li><md-button ui-sref-active="active" ng-href="{{googleUrl}}"><i class="fa fa-users fa-lg"></i>&nbsp Docentes</md-button></li>
                         <li><md-button ui-sref-active="active" ng-href="{{googleUrl}}"><i class="fa fa-pie-chart fa-lg"></i>&nbsp Estadisticas</md-button></li>
                         <li><md-button ui-sref-active="active" ng-href="{{googleUrl}}"><i class="fa fa-sliders fa-lg"></i>&nbsp Administracion</md-button></li>

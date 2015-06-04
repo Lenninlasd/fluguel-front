@@ -28,20 +28,24 @@ angular.module('Dirapp')
         console.log(data);
     });
 
-    $scope.showChildMenu = function(){
+    $scope.toggleChildMenu = function(){
         var nameMenu = $location.$$path.split("/")[2];
-        console.log(nameMenu);
         if (nameMenu == 'estudiantes') {
             $scope.subMenu = true;
         }else {
             $scope.subMenu = false;
         }
+        console.log($scope.subMenu);
     }
-    $scope.showChildMenu();
+    $scope.toggleChildMenu();
 
     $scope.hideChildMenu = function(){
         $scope.subMenu = false;
     }
+    $scope.showChildMenu = function(){
+        $scope.subMenu = true;
+    }
+
 
     $scope.toggleSidenav = function(menuId) {
         $mdSidenav(menuId).toggle();
@@ -51,7 +55,6 @@ angular.module('Dirapp')
 .controller('ListaEstudiantesCtrl',['$scope', '$location', 'Usuario', 'Coordinador', '$stateParams', function ($scope, $location, Usuario, Coordinador, $stateParams){
     $scope.subMenu = false;
     var nameMenu = $location.$$path.split("/")[2];
-    console.log(nameMenu);
     if (nameMenu == 'estudiantes') {
         $scope.subMenu = true;
     }

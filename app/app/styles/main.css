@@ -398,6 +398,10 @@ a.md-button.active {
   color: rgba(255,255,255,0.87) !important;
   background-color: rgb(48, 60, 126) !important;
 }
+a.md-button.active.a-menu {
+  color: rgba(255,255,255,0.87) !important;
+  background-color: rgba(255, 255, 255, 0.27) !important;
+}
 
 .hover-card {
   transition:All 0.5s ease;
