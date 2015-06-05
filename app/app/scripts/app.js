@@ -99,8 +99,13 @@ angular.module('CDapp',[
     })
     .state('admin.estudiantes', {
         url: "/estudiantes?idcurso",
-        templateUrl: "views/admin/listaEstudiantes.html",
+        templateUrl: "views/admin/estudiantes.html",
         controller: 'ListaEstudiantesCtrl'
+    })
+    .state('admin.docentes', {
+        url: "/docentes",
+        templateUrl: "views/admin/docentes.html",
+        controller: 'ListaDocentesCtrl'
     });
 })
 .config(['$httpProvider', function($httpProvider) {

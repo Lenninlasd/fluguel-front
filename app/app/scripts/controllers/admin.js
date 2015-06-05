@@ -18,9 +18,6 @@ angular.module('Dirapp')
             }else if (rol == 'admin') {
                 Coordinador.cursos.query(function (cursos) {
                     $scope.cursos = cursos;
-                    $scope.grados = _.keys(_.indexBy(cursos, 'nombre_curso'));
-                    console.log(cursos);
-                    console.log($scope.grados);
                 });
             }
         }
@@ -52,7 +49,7 @@ angular.module('Dirapp')
     };
 
 }])
-.controller('ListaEstudiantesCtrl',['$scope', '$location', 'Usuario', 'Coordinador', '$stateParams', function ($scope, $location, Usuario, Coordinador, $stateParams){
+.controller('ListaEstudiantesCtrl',['$scope', '$location', 'Coordinador', '$stateParams', function ($scope, $location, Coordinador, $stateParams){
     $scope.subMenu = false;
     var nameMenu = $location.$$path.split("/")[2];
     if (nameMenu == 'estudiantes') {
@@ -64,6 +61,14 @@ angular.module('Dirapp')
     $scope.estudiantes = [];
     Coordinador.estudiantes.query({idcurso: idcurso}, function (estudiantes) {
         $scope.estudiantes = estudiantes;
+    })
+
+}]).controller('ListaDocentesCtrl',['$scope', '$location', 'Usuario', 'Coordinador', '$stateParams', function ($scope, $location, Usuario, Coordinador, $stateParams){
+
+    $scope.docentes = [];
+    Coordinador.profesores.query(function (docentes) {
+        $scope.docentes = docentes;
+        console.log(docentes);
     })
 
 }]);
