@@ -9,7 +9,7 @@
         <md-list-item class="md-2-line" ng-repeat="(key, docente) in docentes| filter:busqueda | orderBy:'nombre'">
             <img ng-src="/images/yeoman.png" class="md-avatar" alt="{{docente.nombre}}" />
             <div  class="md-list-item-text">
-                <h3><a ng-click="showStudentProfile($event, docente.id_estudiante)" class="text-capitalize">
+                <h3><a ng-click="showTeacheProfile($event, docente)" class="text-capitalize">
                     {{docente.nombre | lowercase}} {{docente.apellido | lowercase}}
                 </a></h3>
                 <small>{{docente.tipo_identificacion}} : {{docente.identificacion}}</small> &nbsp;&nbsp

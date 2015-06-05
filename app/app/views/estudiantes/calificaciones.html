@@ -85,9 +85,9 @@
                             <img ng-src="/images/yeoman.png" class="md-avatar" alt="{{estudiante.nombre}}" style="width:35px" />
                         </div>
                         <div flex-sm="60" flex-md="45" flex-gt-md="50" style="padding-left:15px">
-                        <a href ng-click="showStudentProfile($event, estudiante.id_estudiante)" class="text-capitalize">
+                        <div class="text-capitalize"> <!-- href ng-click="showStudentProfile($event, estudiante)" -->
                             {{nota.nombre | lowercase}} {{nota.apellido | lowercase}}
-                        </a>
+                        </div>
                         </div>
                         <!-- <div flex-sm="25" flex-md="40" flex-gt-md="20">
                             <div layout="row" layout-fill>

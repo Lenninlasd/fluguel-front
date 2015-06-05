@@ -70,12 +70,13 @@ angular.module('Dirapp')
     };
 
     //Moda para perfil del estudiante
-    $scope.showStudentProfile = function (ev, idEstudiante) {
+    $scope.showStudentProfile = function (ev, estudiante) {
         $mdDialog.show({
             controller: DialogStudentProfile,
             templateUrl: 'views/estudiantes/dialogos/modalestudiante.html',
             targetEvent: ev,
-            locals: { idEstudiante: idEstudiante }
+            clickOutsideToClose: true,
+            locals: { estudiante: estudiante }
         })
         .then(function(answer) {
                 //$scope.alert = 'You said the information was "' + answer + '".';
@@ -234,18 +235,11 @@ angular.module('Dirapp')
 }]);
 
 //Controlador del perfil del estudiante
-function DialogStudentProfile($scope, $mdDialog, $stateParams, idEstudiante, Coordinador) {
+function DialogStudentProfile($scope, $mdDialog, $stateParams, estudiante, Coordinador) {
 
     $scope.cancel = function() {
       $mdDialog.cancel();
     };
 
-    Coordinador.estudiantes.query({idestudiante: idEstudiante}, function(data){
-        if (_.size(data)) {
-            $scope.estudiante = data[0];
-            console.log(data);
-        }
-    }, function(data){
-        console.log(data); // Error
-    });
+    $scope.estudiante = estudiante;
 }

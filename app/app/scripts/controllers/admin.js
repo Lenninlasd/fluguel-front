@@ -49,7 +49,7 @@ angular.module('Dirapp')
     };
 
 }])
-.controller('ListaEstudiantesCtrl',['$scope', '$location', 'Coordinador', '$stateParams', function ($scope, $location, Coordinador, $stateParams){
+.controller('ListaEstudiantesCtrl',['$scope', '$location', 'Coordinador', '$stateParams', '$mdDialog',  function ($scope, $location, Coordinador, $stateParams, $mdDialog){
     $scope.subMenu = false;
     var nameMenu = $location.$$path.split("/")[2];
     if (nameMenu == 'estudiantes') {
@@ -61,9 +61,27 @@ angular.module('Dirapp')
     $scope.estudiantes = [];
     Coordinador.estudiantes.query({idcurso: idcurso}, function (estudiantes) {
         $scope.estudiantes = estudiantes;
-    })
+    });
 
-}]).controller('ListaDocentesCtrl',['$scope', '$location', 'Usuario', 'Coordinador', '$stateParams', function ($scope, $location, Usuario, Coordinador, $stateParams){
+    //Moda para perfil del estudiante
+    $scope.showStudentProfile = function (ev, estudiante) {
+        $mdDialog.show({
+            controller: DialogStudentProfile,
+            templateUrl: 'views/estudiantes/dialogos/modalestudiante.html',
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            locals: { estudiante: estudiante }
+        })
+        .then(function(answer) {
+                //$scope.alert = 'You said the information was "' + answer + '".';
+                console.log(answer);
+        }, function() {
+                //$scope.alert = 'You cancelled the dialog.';
+                console.log('You cancelled the dialog.');
+        });
+    };
+
+}]).controller('ListaDocentesCtrl',['$scope', '$location', 'Usuario', 'Coordinador', '$stateParams', '$mdDialog', function ($scope, $location, Usuario, Coordinador, $stateParams, $mdDialog){
 
     $scope.docentes = [];
     Coordinador.profesores.query(function (docentes) {
@@ -71,4 +89,31 @@ angular.module('Dirapp')
         console.log(docentes);
     })
 
+    //Moda para perfil del docente
+    $scope.showTeacheProfile = function (ev, docente) {
+        $mdDialog.show({
+            controller: DialogTeacherProfile,
+            templateUrl: 'views/docente/dialogos/perfilDocente.html',
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            locals: { docente: docente }
+        })
+        .then(function(answer) {
+                //$scope.alert = 'You said the information was "' + answer + '".';
+                console.log(answer);
+        }, function() {
+                //$scope.alert = 'You cancelled the dialog.';
+                console.log('You cancelled the dialog.');
+        });
+    };
+
 }]);
+
+//Controlador del perfil del estudiante
+function DialogTeacherProfile($scope, $mdDialog, $stateParams, docente, Coordinador) {
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+    console.log(docente);
+}
