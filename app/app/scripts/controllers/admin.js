@@ -81,7 +81,7 @@ angular.module('Dirapp')
         });
     };
 
-}]).controller('ListaDocentesCtrl',['$scope', '$location', 'Usuario', 'Coordinador', '$stateParams', '$mdDialog', function ($scope, $location, Usuario, Coordinador, $stateParams, $mdDialog){
+}]).controller('ListaDocentesCtrl',['$scope', 'Coordinador', '$mdDialog', function ($scope, Coordinador, $mdDialog){
 
     $scope.docentes = [];
     Coordinador.profesores.query(function (docentes) {
@@ -99,21 +99,28 @@ angular.module('Dirapp')
             locals: { docente: docente }
         })
         .then(function(answer) {
-                //$scope.alert = 'You said the information was "' + answer + '".';
                 console.log(answer);
         }, function() {
-                //$scope.alert = 'You cancelled the dialog.';
                 console.log('You cancelled the dialog.');
         });
     };
 
+}]).controller('ListaMateriasCtrl',['$scope', '$location', 'Coordinador', '$stateParams', '$mdDialog', function ($scope, $location, Coordinador, $stateParams, $mdDialog){
+
+    $scope.materias = [];
+    Coordinador.materias.query(function (materias) {
+        $scope.materias = materias;
+        console.log(materias);
+    });
+
 }]);
 
 //Controlador del perfil del estudiante
-function DialogTeacherProfile($scope, $mdDialog, $stateParams, docente, Coordinador) {
+function DialogTeacherProfile($scope, $mdDialog, docente) {
 
     $scope.cancel = function() {
       $mdDialog.cancel();
     };
+    $scope.docente = docente;
     console.log(docente);
 }

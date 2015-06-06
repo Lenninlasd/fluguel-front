@@ -12,6 +12,7 @@ angular.module('Dirapp')
             }else if (rol == 'profesor') {
                 Docente.listaClases.query({idprofesor: data.userData.identificacion}, function (clases) {
                     $scope.clases = clases;
+                    console.log(clases);
                 });
             }
         }

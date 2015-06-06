@@ -17,19 +17,19 @@
 					<md-list>
 						<md-list-item class="md-3-line">
 							<div class="md-list-item-text" >
-								<h3 class="text-capitalize">{{estudiante.nombre}} {{estudiante.apellido}}</h3>
-								<p>Nombre</p>
+								<h2 class="text-capitalize" style="margin-bottom: 0px;">{{docente.nombre}} {{docente.apellido}}</h2>
+								<p>{{docente.profesion}}</p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-3-line">
 							<div class="md-list-item-text" >
-								<h3><a href="mailto:{{estudiante.email}}" target="_top">{{estudiante.email}}</a></h3>
+								<h3><a href="mailto:{{docente.email}}" target="_top">{{docente.email}}</a></h3>
 								<p>Correo Electrónico</p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-3-line">
 							<div class="md-list-item-text" >
-								<h3>{{estudiante.Direccion}} {{estudiante.Barrio}}</h3>
+								<h3>{{docente.Direccion}} {{docente.Barrio}}</h3>
 								<p>Direccion</p>
 							</div>
 						</md-list-item>
@@ -37,30 +37,23 @@
 
 						<md-list-item class="md-3-line">
 							<div class="md-list-item-text" >
-								<h3>{{estudiante.fecha_nacimiento | date:format:timezone}}</h3>
+								<h3>{{docente.fecha_nacimiento | date:format:timezone}}</h3>
 								<p>Nacimiento</p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-3-line">
 							<div class="md-list-item-text" >
-								<h3>{{estudiante.id_estudiante}}</h3>
-								<p>{{estudiante.tipo_identificacion}}</p>
+								<h3>{{docente.identificacion}}</h3>
+								<p>{{docente.tipo_identificacion}}</p>
 							</div>
 						</md-list-item>
 						<md-list-item class="md-3-line">
 							<div class="md-list-item-text" >
-								<h3>{{estudiante.tipo_sangre}}</h3>
+								<h3>{{docente.tipo_sangre}}</h3>
 								<p>Grupo sanguineo</p>
 							</div>
 						</md-list-item>
-						<md-divider ></md-divider>
 
-						<md-list-item class="md-3-line">
-							<div class="md-list-item-text" >
-								<h3>{{estudiante.Acudiente}} {{estudiante.TelAcudiente}}</h3>
-								<p>Acudiente</p>
-							</div>
-						</md-list-item>
 					</md-list>
 				</md-card>
 

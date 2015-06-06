@@ -106,6 +106,11 @@ angular.module('CDapp',[
         url: "/docentes",
         templateUrl: "views/admin/docentes.html",
         controller: 'ListaDocentesCtrl'
+    })
+    .state('admin.materias', {
+        url: "/materias",
+        templateUrl: "views/admin/materias.html",
+        controller: 'ListaMateriasCtrl'
     });
 })
 .config(['$httpProvider', function($httpProvider) {

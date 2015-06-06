@@ -162,3 +162,9 @@ angular.module('Dirapp',[])
 		templateUrl:'views/estudiantes/dialogos/detalle.html'
 	};
 }])
+.directive('detalleDocente', [function () {
+	return {
+		restrict: 'E',
+		templateUrl:'views/docente/dialogos/detalleDocente.html'
+	};
+}])
