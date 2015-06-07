@@ -113,6 +113,46 @@ angular.module('Dirapp')
         console.log(materias);
     });
 
+}]).controller('EstadisticaCtrl',['$scope', function ($scope){
+
+    var data = {
+      labels: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10'],
+      series: [
+        [1, 2, 4, 8, 6, 2, 1, 4, 6, 2]
+      ]
+    };
+
+    var options = {
+      high: 10,
+      low: 0,
+    };
+
+    new Chartist.Bar('#ct-chart1', data, options).on('draw', function(data) {
+      if(data.type === 'bar') {
+          data.element.attr({
+            style: 'stroke-width: 20px'
+          });
+      };
+    });
+
+
+    new Chartist.Bar('#ct-chart2', {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      series: [
+        [5, 4, 3, 7, 5, 10, 3],
+        [3, 2, 9, 5, 4, 6, 4]
+      ]
+    }, {
+      axisX: {
+        // On the x-axis start means top and end means bottom
+        position: 'start'
+      },
+      axisY: {
+        // On the y-axis start means left and end means right
+        position: 'end'
+      }
+    });
+
 }]);
 
 //Controlador del perfil del estudiante

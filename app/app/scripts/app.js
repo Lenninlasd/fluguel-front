@@ -111,6 +111,11 @@ angular.module('CDapp',[
         url: "/materias",
         templateUrl: "views/admin/materias.html",
         controller: 'ListaMateriasCtrl'
+    })
+    .state('admin.estadistica', {
+        url: "/estadistica",
+        templateUrl: "views/admin/estadistica.html",
+        controller: 'EstadisticaCtrl'
     });
 })
 .config(['$httpProvider', function($httpProvider) {

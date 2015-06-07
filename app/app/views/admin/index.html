@@ -24,10 +24,10 @@
                                 <i class="fa fa-child"></i><i class="fa fa-child fa-lg"></i> Estudiantes
                             </md-button>
                         </li> -->
-                        <li><md-button ui-sref-active="active" ui-sref="admin.docentes" class="a-menu"><i class="fa fa-users fa-lg"></i>&nbsp Docentes</md-button></li>
-                        <li><md-button ui-sref-active="active" ui-sref="admin.materias" class="a-menu"><i class="fa fa-th-large fa-lg"></i>&nbsp Materias</md-button></li>
-                        <li><md-button ui-sref-active="active" ng-href="{{googleUrl}}" class="a-menu"><i class="fa fa-pie-chart fa-lg"></i>&nbsp Estadisticas</md-button></li>
-                        <li><md-button ui-sref-active="active" ng-href="{{googleUrl}}" class="a-menu"><i class="fa fa-sliders fa-lg"></i>&nbsp Administracion</md-button></li>
+                        <li><md-button ui-sref-active="active" ui-sref="admin.docentes" ng-click="hideChildMenu()" class="a-menu"><i class="fa fa-users fa-lg"></i>&nbsp Docentes</md-button></li>
+                        <li><md-button ui-sref-active="active" ui-sref="admin.materias" ng-click="hideChildMenu()" class="a-menu"><i class="fa fa-th-large fa-lg"></i>&nbsp Materias</md-button></li>
+                        <li><md-button ui-sref-active="active" ui-sref="admin.estadistica" ng-click="hideChildMenu()" class="a-menu"><i class="fa fa-pie-chart fa-lg"></i>&nbsp Estadisticas</md-button></li>
+                        <li><md-button ui-sref-active="active" ng-href="{{googleUrl}}" ng-click="hideChildMenu()" class="a-menu"><i class="fa fa-sliders fa-lg"></i>&nbsp Administracion</md-button></li>
                     </ul>
                 </div>
             </md-sidenav>
