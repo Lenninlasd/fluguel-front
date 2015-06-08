@@ -116,41 +116,46 @@ angular.module('Dirapp')
 }]).controller('EstadisticaCtrl',['$scope', function ($scope){
 
     var data = {
-      labels: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10'],
+      labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10'],
       series: [
-        [1, 2, 4, 8, 6, 2, 1, 4, 6, 2]
+        [1, 2, 4, 8, 6, 2, 1, 4, 6.6, 2]
       ]
     };
 
     var options = {
       high: 10,
       low: 0,
+      lineSmooth: false,
+      plugins: [
+        Chartist.plugins.ctPointLabels({
+          textAnchor: 'middle'
+        })
+      ],
+      axisX: {
+         showGrid: false,
+         showLabel: true
+      },
+      axisY: {
+         showGrid: false,
+         showLabel: false
+      },
     };
 
-    new Chartist.Bar('#ct-chart1', data, options).on('draw', function(data) {
-      if(data.type === 'bar') {
-          data.element.attr({
-            style: 'stroke-width: 20px'
-          });
-      };
-    });
+    new Chartist.Line('#ct-chart1', data, options);
 
 
     new Chartist.Bar('#ct-chart2', {
-      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      labels: ['Matemáticas', 'Español', 'Sociales', 'Informatica', 'Edu. Física', 'Química', 'Biología'],
       series: [
         [5, 4, 3, 7, 5, 10, 3],
-        [3, 2, 9, 5, 4, 6, 4]
       ]
-    }, {
-      axisX: {
-        // On the x-axis start means top and end means bottom
-        position: 'start'
-      },
-      axisY: {
-        // On the y-axis start means left and end means right
-        position: 'end'
-      }
+    });
+
+    new Chartist.Bar('#ct-chart3', {
+      labels: ['Lunes', 'Martes', 'Miercoles', 'jueves', 'viernes'],
+      series: [
+        [5, 4, 3, 7, 5],
+      ]
     });
 
 }]);

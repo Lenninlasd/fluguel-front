@@ -58,7 +58,7 @@ angular.module('Dirapp',[])
 		scope.tabla.datos = scope.ObjtoArray(scope.tabla.datos);
 		scope.tabla.header = scope.TablaHeader(scope.tabla.header);
       // scope.limite = scope.tabla.datos.length;
-  };
+  }
 
   return {
   	restrict: 'E',
@@ -167,4 +167,4 @@ angular.module('Dirapp',[])
 		restrict: 'E',
 		templateUrl:'views/docente/dialogos/detalleDocente.html'
 	};
-}])
+}]);

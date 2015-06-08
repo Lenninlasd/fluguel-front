@@ -15,13 +15,13 @@ angular.module('SerFlugel', ['ngResource'])
 		notas: $resource('http://' + Config.ip + ':' + Config.port + '/' + Config.version +'/docente/notas.json', {}, { update: {method: 'PUT'}}),
 		estudiantes: $resource('http://' + Config.ip + ':' + Config.port + '/' + Config.version +'/docente/estudiante.json', {}, { update: {method: 'PUT'}}),
 		asistencia: $resource('http://' + Config.ip + ':' + Config.port + '/' + Config.version + '/docente/asistencia.json')
-	}
+	};
 }])
 .factory('Usuario',['$resource', 'Config', function ContenidoFactory($resource, Config){
 	return {
 		login : $resource('http://' + Config.ip + ':' + Config.port + '/' +  Config.version + '/usuario/login.json'),
 		logout : $resource('http://' + Config.ip + ':' + Config.port + '/' +  Config.version + '/usuario/logout.json')
-	}
+	};
 }])
 .factory('Coordinador',['$resource', 'Config', function ContenidoFactory($resource, Config){
 	return {
@@ -29,7 +29,7 @@ angular.module('SerFlugel', ['ngResource'])
 		cursos: $resource('http://' + Config.ip + ':' + Config.port + '/' + Config.version + '/coordinador/cursos.json'),
 		profesores : $resource('http://' + Config.ip + ':' + Config.port + '/' + Config.version + '/coordinador/profesor.json', {}, { update: {method: 'PUT'}}),
 		materias: $resource('http://' + Config.ip + ':' + Config.port + '/' + Config.version + '/coordinador/materias.json')
-	}
+	};
 }])
 
 .controller('testCotroller', ['$scope', 'Docente', function ($scope, Docente) {
@@ -42,7 +42,7 @@ angular.module('SerFlugel', ['ngResource'])
 		console.log(data); // Error
 	});
 
-	var query = {idclase: '13775731636734635', idindicador: '35', idcalificacion: '13996916046293832'};
+	query = {idclase: '13775731636734635', idindicador: '35', idcalificacion: '13996916046293832'};
 	Docente.notas.query(query, function(data){
 		console.log(data);
 	}, function(data){
