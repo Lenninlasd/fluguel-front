@@ -1,3 +1,4 @@
+'use strict';
 angular.module('Dirapp',[])
 
 .directive('aCordeon', function (){
@@ -62,7 +63,7 @@ angular.module('Dirapp',[])
 
   return {
   	restrict: 'E',
-  	templateUrl: "views/iTable.html",
+  	templateUrl: 'views/iTable.html',
   	link: link
 
   };
@@ -71,10 +72,10 @@ angular.module('Dirapp',[])
   return {
     restrict: 'A',
     link: function(scope, element, attrs){
-      if (attrs.toggle=="tooltip"){
+      if (attrs.toggle=='tooltip'){
         $(element).tooltip();
       }
-      // if (attrs.toggle=="popover"){
+      // if (attrs.toggle=='popover'){
       //   $(element).popover();
       // }
     }

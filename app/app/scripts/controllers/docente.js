@@ -1,14 +1,15 @@
+'use strict';
 angular.module('Dirapp')
 .controller('docenteCtrl',['$scope','$mdSidenav', '$location', 'Usuario', 'Docente', '$state', function ($scope,$mdSidenav, $location, Usuario, Docente, $state){
     moment.locale('es');
     // Valida que la sesion haya iniciado
     Usuario.login.get(function (data) {
         if (data.login === false) {
-            $location.path("/login");
+            $location.path('/login');
         }else {
             var rol = data.userData.rol;
             if (rol == 'admin') {
-                return $location.path("/admin");
+                return $location.path('/admin');
             }else if (rol == 'profesor') {
                 Docente.listaClases.query({idprofesor: data.userData.identificacion}, function (clases) {
                     $scope.clases = clases;

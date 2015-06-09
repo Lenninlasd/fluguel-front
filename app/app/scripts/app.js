@@ -1,3 +1,4 @@
+'use strict';
 angular.module('CDapp',[
     'ui.router',
     'ngMaterial',
@@ -22,99 +23,99 @@ angular.module('CDapp',[
 .config(function($stateProvider, $urlRouterProvider) {
 
     // For any unmatched url, redirect to /state1
-    $urlRouterProvider.otherwise("/Docente/");
+    $urlRouterProvider.otherwise('/Docente/');
       //
     // Now set up the states
     $stateProvider
     // Rol de Doncente que cuenta con un parametro para cada clase
     .state('Home', {
-        url: "/Docente/",
-        templateUrl: "views/home.html",
-        controller: "docenteCtrl"
+        url: '/Docente/',
+        templateUrl: 'views/home.html',
+        controller: 'docenteCtrl'
     })
     .state('Docente',{
-        url:"/Docente/{idclase:int}", // sólo caracteres alfanuméricos
-        templateUrl:"views/todo.html",
-        controller: "docenteCtrl"
+        url:'/Docente/{idclase:int}', // sólo caracteres alfanuméricos
+        templateUrl:'views/todo.html',
+        controller: 'docenteCtrl'
     })
     .state('admin', {
-        url:"/admin",
-        templateUrl: "views/admin/index.html",
-        controller: "AdminCtrl"
+        url:'/admin',
+        templateUrl: 'views/admin/index.html',
+        controller: 'AdminCtrl'
     })
     .state('login', {
-        url: "/login",
-        templateUrl: "views/landing/index.html",
-        controller: "LandingCtrl"
+        url: '/login',
+        templateUrl: 'views/landing/index.html',
+        controller: 'LandingCtrl'
     })
     .state('configuracion',{
-        url:"/configuracion",
-        template: "<h2>Settings init</h2>"
+        url:'/configuracion',
+        template: '<h2>Settings init</h2>'
     })
     .state('ayuda',{
-        url:"/ayuda",
-        template: "<h2>Help</h2>"
+        url:'/ayuda',
+        template: '<h2>Help</h2>'
     })
 
     // estados anidaddos
     .state('Docente.Contenido', {
-        url: "/Contenido",
-        templateUrl: "views/contenido/index.html",
-        controller: "ContenidoCtrl"
+        url: '/Contenido',
+        templateUrl: 'views/contenido/index.html',
+        controller: 'ContenidoCtrl'
     })
     .state('Docente.Evaluaciones', {
-        url: "/Evaluaciones",
-        templateUrl: "views/Evaluaciones.html",
+        url: '/Evaluaciones',
+        templateUrl: 'views/Evaluaciones.html',
     })
     .state('Docente.Estudiantes', {
-        url: "/Estudiantes",
-        templateUrl: "views/estudiantes/index.html",
+        url: '/Estudiantes',
+        templateUrl: 'views/estudiantes/index.html',
         controller: 'EstudiantesCtrl'
     })
     .state('Docente.Trabajos', {
-        url: "/Trabajos",
-        template: "<h3>Espacio Trabajos<h3/>",
+        url: '/Trabajos',
+        template: '<h3>Espacio Trabajos<h3/>',
     })
 
     // Segundo anillo
     .state('Docente.Estudiantes.lista', {
-        url: "/lista",
-        templateUrl: "views/estudiantes/lista.html",
+        url: '/lista',
+        templateUrl: 'views/estudiantes/lista.html',
     })
     .state('Docente.Estudiantes.asistencia', {
-        url: "/asistencia",
-        templateUrl: "views/estudiantes/asistencia.html",
+        url: '/asistencia',
+        templateUrl: 'views/estudiantes/asistencia.html',
         controller: 'AsistenciaCtrl'
     })
     .state('Docente.Estudiantes.calificaciones', {
-        url: "/calificaciones?idcalificacion",
-        templateUrl: "views/estudiantes/calificaciones.html",
+        url: '/calificaciones?idcalificacion',
+        templateUrl: 'views/estudiantes/calificaciones.html',
         controller: 'CalificacionCtrl'
     })
 
     // Anillo Admin
     .state('admin.cursos', {
-        url: "/cursos",
-        templateUrl: "views/admin/cursos.html"
+        url: '/cursos',
+        templateUrl: 'views/admin/cursos.html'
     })
     .state('admin.estudiantes', {
-        url: "/estudiantes?idcurso",
-        templateUrl: "views/admin/estudiantes.html",
+        url: '/estudiantes?idcurso',
+        templateUrl: 'views/admin/estudiantes.html',
         controller: 'ListaEstudiantesCtrl'
     })
     .state('admin.docentes', {
-        url: "/docentes",
-        templateUrl: "views/admin/docentes.html",
+        url: '/docentes',
+        templateUrl: 'views/admin/docentes.html',
         controller: 'ListaDocentesCtrl'
     })
     .state('admin.materias', {
-        url: "/materias",
-        templateUrl: "views/admin/materias.html",
+        url: '/materias',
+        templateUrl: 'views/admin/materias.html',
         controller: 'ListaMateriasCtrl'
     })
     .state('admin.estadistica', {
-        url: "/estadistica",
-        templateUrl: "views/admin/estadistica.html",
+        url: '/estadistica',
+        templateUrl: 'views/admin/estadistica.html',
         controller: 'EstadisticaCtrl'
     });
 })

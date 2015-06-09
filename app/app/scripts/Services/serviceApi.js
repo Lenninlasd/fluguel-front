@@ -1,8 +1,9 @@
+'use strict';
 angular.module('SerFlugel', ['ngResource'])
 
 .factory('Config', function () {
 	return {
-		version : "0.2.2",
+		version : '0.2.2',
 		ip: location.hostname,
 		port: 3001
 	};

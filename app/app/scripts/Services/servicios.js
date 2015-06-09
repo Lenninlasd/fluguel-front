@@ -1,3 +1,4 @@
+'use strict';
 angular.module('Servapp',[])
 
 .factory('Datos',['$http', function ($http){
@@ -10,7 +11,7 @@ angular.module('Servapp',[])
 		$http.get('scripts/Json/contenido.json').success(function(data){
 			return data;
 		});
-	
+
 
 	return todoDatos;
 

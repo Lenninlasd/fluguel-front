@@ -1,3 +1,4 @@
+'use strict';
 angular.module('Dirapp')
   .controller('ContenidoCtrl', ['$scope', '$mdDialog', '$stateParams', '$state', 'Docente', function ($scope, $mdDialog, $stateParams, $state, Docente) {
     'use strict';
@@ -98,11 +99,11 @@ angular.module('Dirapp')
     };
     $scope.editEvaluacion = function() {
         var evaluacion = {
-            "id_indicador" : $scope.evaluacion.id_indicador,
-            "tipo_evaluacion": $scope.evaluacion.tipo_evaluacion,
-            "concepto": $scope.evaluacion.concepto,
-            "ponderacion": $scope.evaluacion.ponderacion,
-            "Clase_numero": $scope.evaluacion.id_clase
+            'id_indicador' : $scope.evaluacion.id_indicador,
+            'tipo_evaluacion': $scope.evaluacion.tipo_evaluacion,
+            'concepto': $scope.evaluacion.concepto,
+            'ponderacion': $scope.evaluacion.ponderacion,
+            'Clase_numero': $scope.evaluacion.id_clase
         };
         var idcalificacion = {idcalificacion : $scope.evaluacion.id_calificacion};
         Docente.calificaciones.update(idcalificacion, evaluacion, function (log) {

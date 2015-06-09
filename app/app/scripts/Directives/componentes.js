@@ -1,3 +1,4 @@
+'use strict';
 angular.module('Dirapp')
 .directive('simpleToolbar', function (){
 	return{

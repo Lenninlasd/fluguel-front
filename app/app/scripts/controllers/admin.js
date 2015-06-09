@@ -1,3 +1,4 @@
+'use strict';
 angular.module('Dirapp')
 .factory('MenuAdmin', function() {
     return {
@@ -10,11 +11,11 @@ angular.module('Dirapp')
     // Valida que la sesion haya iniciado
     Usuario.login.get(function (data) {
         if (data.login === false) {
-            $location.path("/login");
+            $location.path('/login');
         }else {
             var rol = data.userData.rol;
             if (rol == 'profesor') {
-                return $location.path("/Docente");
+                return $location.path('/Docente');
             }else if (rol == 'admin') {
                 Coordinador.cursos.query(function (cursos) {
                     $scope.cursos = cursos;
@@ -26,7 +27,7 @@ angular.module('Dirapp')
     });
 
     $scope.toggleChildMenu = function(){
-        var nameMenu = $location.$$path.split("/")[2];
+        var nameMenu = $location.$$path.split('/')[2];
         if (nameMenu == 'estudiantes') {
             $scope.subMenu = true;
         }else {
@@ -51,7 +52,7 @@ angular.module('Dirapp')
 }])
 .controller('ListaEstudiantesCtrl',['$scope', '$location', 'Coordinador', '$stateParams', '$mdDialog',  function ($scope, $location, Coordinador, $stateParams, $mdDialog){
     $scope.subMenu = false;
-    var nameMenu = $location.$$path.split("/")[2];
+    var nameMenu = $location.$$path.split('/')[2];
     if (nameMenu == 'estudiantes') {
         $scope.subMenu = true;
     }
@@ -73,7 +74,7 @@ angular.module('Dirapp')
             locals: { estudiante: estudiante }
         })
         .then(function(answer) {
-                //$scope.alert = 'You said the information was "' + answer + '".';
+                //$scope.alert = 'You said the information was '' + answer + ''.';
                 console.log(answer);
         }, function() {
                 //$scope.alert = 'You cancelled the dialog.';

@@ -1,3 +1,4 @@
+'use strict';
 angular.module('Dirapp')
 .controller('LandingCtrl', ['$scope', '$mdDialog', '$location', '$cookies', 'Usuario', function($scope, $mdDialog, $location, $cookies, Usuario) {
     'use strict';
@@ -7,10 +8,10 @@ angular.module('Dirapp')
         var hola = $cookies.get('session');
         console.log(hola);
         if (data.login === true) {
-            if (data.userData.rol == "admin") {
-                $location.path("/admin");
-            }else if(data.userData.rol == "profesor") {
-                $location.path("/Docente");
+            if (data.userData.rol == 'admin') {
+                $location.path('/admin');
+            }else if(data.userData.rol == 'profesor') {
+                $location.path('/Docente');
             }
         }
     },function(data){
@@ -24,7 +25,7 @@ angular.module('Dirapp')
                 targetEvent: ev,
             })
             .then(function(answer) {
-                //$scope.alert = 'You said the information was "' + answer + '".';
+                //$scope.alert = 'You said the information was '' + answer + ''.';
                 console.log(answer);
             }, function() {
                 //$scope.alert = 'You cancelled the dialog.';
@@ -39,7 +40,7 @@ angular.module('Dirapp')
         Usuario.logout.save(function(data){
             if (!data.login) {
                 $cookies.remove('session');
-                $location.path("/login");
+                $location.path('/login');
             }
         });
     };
@@ -61,10 +62,10 @@ function LoginCtrl($scope, Usuario, $location, $mdDialog, $cookies) {
             //res.cookie('session', id_session); // problema con cookies solucionar con angular
             $mdDialog.hide();
             if (data.login && data.userData) {
-                if (data.userData.rol == "admin") {
-                    $location.path("/admin");
-                }else if (data.userData.rol == "profesor") {
-                    $location.path("/Docente");
+                if (data.userData.rol == 'admin') {
+                    $location.path('/admin');
+                }else if (data.userData.rol == 'profesor') {
+                    $location.path('/Docente');
                 }
             }
         }, function (err) {

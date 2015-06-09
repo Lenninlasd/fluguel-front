@@ -1,6 +1,7 @@
+'use strict';
 //Controlador del dialogo nueva asistencia /
 function Dialogasistencia($scope, $mdDialog) {
-    "use strict";
+    'use strict';
     $scope.save = function() {
        $mdDialog.hide(true);
     };
@@ -79,7 +80,7 @@ angular.module('Dirapp')
             locals: { estudiante: estudiante }
         })
         .then(function(answer) {
-                //$scope.alert = 'You said the information was "' + answer + '".';
+                //$scope.alert = 'You said the information was '' + answer + ''.';
                 console.log(answer);
         }, function() {
                 //$scope.alert = 'You cancelled the dialog.';
@@ -113,21 +114,21 @@ angular.module('Dirapp')
   .controller('estudianteAsistenciaListCtrl', ['$scope', function ($scope) {
       var x,y,top,left,down;
 
-      $("#stuff").mousedown(function(e){
+      $('#stuff').mousedown(function(e){
           e.preventDefault();
           down=true;
           x=e.pageX;
           left=$(this).scrollLeft();
       });
 
-      $("#stuff").mousemove(function(e){
+      $('#stuff').mousemove(function(e){
           if(down){
               var newX=e.pageX;
-              $("#stuff").scrollLeft(left-newX+x);
+              $('#stuff').scrollLeft(left-newX+x);
           }
       });
 
-      $("#stuff").mouseup(function(e){down=false;});
+      $('#stuff').mouseup(function(e){down=false;});
   }])
 
 .controller('AsistenciaCtrl', ['$scope', '$stateParams', 'Docente', function($scope, $stateParams, Docente){
@@ -136,7 +137,7 @@ angular.module('Dirapp')
     $scope.meses = [];
     $scope.curMes = moment().month() + 1;
     for (var i = 0; i < $scope.curMes; i++) {
-        $scope.meses.push([moment().month(i).format("MMMM"), i+1]);
+        $scope.meses.push([moment().month(i).format('MMMM'), i+1]);
     }
 
     // Dado un mes retorna las inasistencias del mes del año actual
@@ -200,7 +201,7 @@ angular.module('Dirapp')
 
         Docente.notas.query({idclase: idClase, idcalificacion: idcalificacion}, function (notas) {
             $scope.notas = notas;
-            $state.go('Docente.Estudiantes.calificaciones', {idcalificacion: idcalificacion}, {location:"replace", inherit:false});
+            $state.go('Docente.Estudiantes.calificaciones', {idcalificacion: idcalificacion}, {location:'replace', inherit:false});
             //var url = $location.$$path + '?idcalificacion=' + idcalificacion;
             //$location.search('idcalificacion', idcalificacion);
         });
