@@ -158,6 +158,32 @@ angular.module('Dirapp')
       ]
     });
 
+    new Chartist.Bar('#ct-chart4', {
+      labels: ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'],
+      series: [
+        [5, 4, 3, 7, 5],
+      ]
+    },{
+      high: 8
+    });
+
+
+}]).controller('EstNotasCtrl',['$scope', function ($scope){
+    new Chartist.Bar('#ct-chart2', {
+      labels: ['Matemáticas', 'Español', 'Sociales', 'Informatica', 'Edu. Física', 'Química', 'Biología'],
+      series: [
+        [5, 4, 3, 7, 5, 10, 3],
+      ]
+    });
+
+    new Chartist.Bar('#ct-chart4', {
+      labels: ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'],
+      series: [
+        [5, 4, 3, 7, 5],
+      ]
+    },{
+      high: 8
+    });
 }]);
 
 //Controlador del perfil del estudiante
