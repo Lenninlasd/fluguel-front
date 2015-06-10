@@ -1,4 +1,15 @@
 <div layout-margin>
+  <md-toolbar layout="row">
+      <div flex="60" layout="row" layout-padding layout-align="start center">Inasistencia</div>
+      <div flex="35" layout="row" layout-align="end center">
+          <md-select  name="myModel" placeholder="Periodo" ng-model="myModel" required md-theme="top">
+              <md-option value="1">Primer período</md-option>
+              <md-option value="2">Segundo período</md-option>
+              <md-option value="3">Tercer período</md-option>
+              <md-option value="4">Cuarto período</md-option>
+          </md-select>
+      </div>
+  </md-toolbar>
   <md-card>
       <md-card-content>
           <h2 class="md-title">Evolución del porcentaje de inasistencia.</h2>
