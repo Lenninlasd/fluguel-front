@@ -33,15 +33,15 @@ angular.module('Dirapp')
             $scope.subMenu = false;
         }
         console.log($scope.subMenu);
-    }
+    };
     $scope.toggleChildMenu();
 
     $scope.hideChildMenu = function(){
         $scope.subMenu = false;
-    }
+    };
     $scope.showChildMenu = function(){
         $scope.subMenu = true;
-    }
+    };
 
 
     $scope.toggleSidenav = function(menuId) {
@@ -87,7 +87,7 @@ angular.module('Dirapp')
     Coordinador.profesores.query(function (docentes) {
         $scope.docentes = docentes;
         console.log(docentes);
-    })
+    });
 
     //Moda para perfil del docente
     $scope.showTeacheProfile = function (ev, docente) {
