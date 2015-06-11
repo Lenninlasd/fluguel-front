@@ -1,21 +1,33 @@
+//Controlador del perfil del estudiante
+function DialogTeacherProfile($scope, $mdDialog, docente) {
+    'use strict';
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+    $scope.docente = docente;
+    console.log(docente);
+}
+
 angular.module('Dirapp')
 .factory('MenuAdmin', function() {
+  'use strict';
     return {
       subMenu: false
     };
 })
-.controller('AdminCtrl',['$scope','$mdSidenav', '$location', 'Usuario', 'Coordinador', '$state', function ($scope,$mdSidenav, $location, Usuario, Coordinador, $state){
+.controller('AdminCtrl',['$scope','$mdSidenav', '$location', 'Usuario', 'Coordinador', function ($scope,$mdSidenav, $location, Usuario, Coordinador){
+    'use strict';
     $scope.subMenu = false;
 
     // Valida que la sesion haya iniciado
     Usuario.login.get(function (data) {
         if (data.login === false) {
-            $location.path("/login");
+            $location.path('/login');
         }else {
             var rol = data.userData.rol;
-            if (rol == 'profesor') {
-                return $location.path("/Docente");
-            }else if (rol == 'admin') {
+            if (rol === 'profesor') {
+                return $location.path('/Docente');
+            }else if (rol === 'admin') {
                 Coordinador.cursos.query(function (cursos) {
                     $scope.cursos = cursos;
                 });
@@ -26,8 +38,8 @@ angular.module('Dirapp')
     });
 
     $scope.toggleChildMenu = function(){
-        var nameMenu = $location.$$path.split("/")[2];
-        if (nameMenu == 'estudiantes') {
+        var nameMenu = $location.$$path.split('/')[2];
+        if (nameMenu === 'estudiantes') {
             $scope.subMenu = true;
         }else {
             $scope.subMenu = false;
@@ -50,9 +62,10 @@ angular.module('Dirapp')
 
 }])
 .controller('ListaEstudiantesCtrl',['$scope', '$location', 'Coordinador', '$stateParams', '$mdDialog',  function ($scope, $location, Coordinador, $stateParams, $mdDialog){
+    'use strict';
     $scope.subMenu = false;
-    var nameMenu = $location.$$path.split("/")[2];
-    if (nameMenu == 'estudiantes') {
+    var nameMenu = $location.$$path.split('/')[2];
+    if (nameMenu === 'estudiantes') {
         $scope.subMenu = true;
     }
 
@@ -73,7 +86,7 @@ angular.module('Dirapp')
             locals: { estudiante: estudiante }
         })
         .then(function(answer) {
-                //$scope.alert = 'You said the information was "' + answer + '".';
+                //$scope.alert = 'You said the information was '' + answer + ''.';
                 console.log(answer);
         }, function() {
                 //$scope.alert = 'You cancelled the dialog.';
@@ -82,7 +95,7 @@ angular.module('Dirapp')
     };
 
 }]).controller('ListaDocentesCtrl',['$scope', 'Coordinador', '$mdDialog', function ($scope, Coordinador, $mdDialog){
-
+    'use strict';
     $scope.docentes = [];
     Coordinador.profesores.query(function (docentes) {
         $scope.docentes = docentes;
@@ -105,22 +118,36 @@ angular.module('Dirapp')
         });
     };
 
-}]).controller('ListaMateriasCtrl',['$scope', '$location', 'Coordinador', '$stateParams', '$mdDialog', function ($scope, $location, Coordinador, $stateParams, $mdDialog){
-
+}]).controller('ListaMateriasCtrl',['$scope', '$location', 'Coordinador', function ($scope, $location, Coordinador){
+    'use strict';
     $scope.materias = [];
     Coordinador.materias.query(function (materias) {
         $scope.materias = materias;
         console.log(materias);
     });
 
-}]).controller('EstadisticaCtrl',['$scope', function ($scope){
+}])
+.controller('EstadisticaCtrl',['$scope', 'Analytics', function ($scope, Analytics){
+    'use strict';
 
-    var data = {
-      labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10'],
-      series: [
-        [1, 2, 4, 8, 6, 2, 1, 4, 6.6, 2]
-      ]
-    };
+    Analytics.promedioVsMaterias.query(function (promedios) {
+        console.log(promedios);
+    });
+
+    var data = {labels:[], series:[]};
+    Analytics.promedioVsGrados.query(function (grado) {
+        //var labels =
+        //var series = _.pluck(data, 'nota');
+
+        data = {
+          labels: _.pluck(grado, 'grado'),
+          series: [
+            _.pluck(grado, 'nota')
+          ]
+        };
+        console.log(data);
+    });
+
 
     var options = {
       high: 10,
@@ -185,13 +212,3 @@ angular.module('Dirapp')
       high: 8
     });
 }]);
-
-//Controlador del perfil del estudiante
-function DialogTeacherProfile($scope, $mdDialog, docente) {
-
-    $scope.cancel = function() {
-      $mdDialog.cancel();
-    };
-    $scope.docente = docente;
-    console.log(docente);
-}
