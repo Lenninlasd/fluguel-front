@@ -17,7 +17,7 @@ function Dialogasistencia($scope, $mdDialog) {
 angular.module('Dirapp')
   .controller('EstudiantesCtrl', function ($scope, $mdSidenav, $mdDialog, $mdToast, $stateParams, Docente, $state) {
     'use strict';
-
+    // redireccion
     $scope.$on('$viewContentLoaded',
         function(event){
             if ($state.current.url == '/Estudiantes') {
@@ -160,20 +160,28 @@ angular.module('Dirapp')
 .controller('CalificacionCtrl', ['$scope', '$stateParams', '$state', 'Docente', '$location', function($scope, $stateParams, $state, Docente, $location){
     var idClase = $stateParams.idclase;
     $scope.logroSW = 1;
+    $scope.porcentaje = 0;
+    $scope.showCalificaciones = 1;
 
     if ($stateParams.idcalificacion) {
       Docente.notas.query({idclase: idClase, idcalificacion:$stateParams.idcalificacion}, function (notas) {
           if (_.size(notas)) {
               var idindicador = notas[0].id_indicador;
+
               Docente.contenido.query({idclase: idClase, idindicador: idindicador}, function (logros) {
-                  if (_.size(logros)) {
-                      $scope.periodo = logros[0].periodo;
-                      $scope.logros = logros;
+
+                  var periodo = _.findWhere(logros, {id_indicador: idindicador}).periodo;
+                  var logrosFilt = _.where(logros, {periodo: periodo});
+
+                  if (_.size(logrosFilt)) {
+                      $scope.periodo = logrosFilt[0].periodo;
+                      $scope.logros = logrosFilt;
                       $scope.logro = idindicador;
                       $scope.logroSW = 0;
                       $scope.notas = notas;
                       Docente.calificaciones.query({idclase: idClase, idindicador: idindicador}, function(evaluaciones){
                           $scope.evaluaciones = evaluaciones;
+                          $scope.porcentaje = _.reduce(evaluaciones, function(memo, obj){ return memo + obj.ponderacion}, 0);
                       });
                   }
               });
@@ -182,17 +190,19 @@ angular.module('Dirapp')
     }
 
     $scope.getcontenido = function (periodo) {
-        console.log(periodo);
         Docente.contenido.query({idclase: idClase, periodo: periodo}, function(logros){
             $scope.logros = logros;
             $scope.logro = null;
             $scope.logroSW = 0;
+            $scope.showCalificaciones = 0;
+            $scope.evaluaciones = [];
         });
     };
 
     $scope.getCalificaciones = function (logro) {
       Docente.calificaciones.query({idclase: idClase, idindicador: logro}, function(evaluaciones){
           $scope.evaluaciones = evaluaciones;
+          $scope.showCalificaciones = _.size(evaluaciones) ? 1 : 0;
       });
     };
 

@@ -5,6 +5,7 @@ angular.module('Dirapp')
     var idClase = $stateParams.idclase;
     $scope.logro = {};
     $scope.evaluacion = {};
+    $scope.porcentaje = {};
 
     $scope.Periodos =[
         {periodo:'Primer Perido',targetid:'primero',expanded:true,id:'1'},
@@ -18,9 +19,19 @@ angular.module('Dirapp')
 
         Docente.calificaciones.query({idclase: idClase}, function(evaluaciones){
             $scope.evaluaciones = evaluaciones;
+            console.log(evaluaciones);
             //$('#areaConcepto').flexible();
         });
     });
+
+    // dado un id de indicador calcula la suma total de los porcentajes de los logros
+    $scope.getPorcentaje = function (id_indicador, evaluaciones) {
+       var porcentaje = _.chain(evaluaciones)
+                  .where({id_indicador: id_indicador})
+                  .reduce(function(memo, obj){ return memo + obj.ponderacion}, 0);
+       $scope.porcentaje[id_indicador] = porcentaje;
+       return porcentaje;
+    }
 
     $scope.saveLogro = function(id_indicador){
 

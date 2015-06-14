@@ -1,4 +1,7 @@
 <md-list>
+    <div class="alert alert-danger md-whiteframe-z2" role="alert" ng-show="getPorcentaje(logro.id_indicador, evaluaciones) > 100">
+      La suma de la ponderación de cada evaluación es de {{porcentaje[logro.id_indicador]}}% y exede el 100%, para cambiarla haga click en el boton editar <span class="label label-success"><i class="fa fa-edit fa-lg"></i></span>
+    </div>
     <md-list-item class="md-3-line" ng-repeat="evaluacion in evaluaciones | filter:{id_indicador:logro.id_indicador}">
         <div class="md-list-item-text text-capitalize">
           <h3>
@@ -6,15 +9,16 @@
               {{evaluacion.tipo_evaluacion}}
           </h3>
           <p style="width:80%;"><strong>Concepto: </strong>{{evaluacion.concepto}}</p>
-          <span hide-gt-md>
-              <a href ng-click="calificar(evaluacion.id_calificacion)">Calificar</a>
-               ·
-              <a href="" ng-click="showEditEvaluacion(evaluacion)" data-toggle="modal" data-target="#modalEditEvaluacion"> Editar</a>
-          </span>
+          <div hide-gt-md>
+              <!-- <md-button ng-click="calificar(evaluacion.id_calificacion)" ng-disabled="porcentaje[logro.id_indicador] > 100" class="md-primary">Calificar</md-button> -->
+              <a class="btn btn-default btn-sm" href ng-click="calificar(evaluacion.id_calificacion)" ng-disabled="porcentaje[logro.id_indicador] > 100">Calificar</a>
+
+              <a class="btn btn-default btn-sm" href="" ng-click="showEditEvaluacion(evaluacion)" data-toggle="modal" data-target="#modalEditEvaluacion"><i class="fa fa-edit"></i> Editar</a>
+          </div>
         </div>
 
         <div hide show-gt-md class="md-secondary">
-            <button class="btn btn-default btn-sm"  ng-click="calificar(evaluacion.id_calificacion)">
+            <button class="btn btn-default btn-sm" ng-disabled="porcentaje[logro.id_indicador] > 100" ng-click="calificar(evaluacion.id_calificacion)">
                <span>Calificar</span>
            </button>
            <span title="Editar Evaluación" data-toggle="tooltip">

@@ -2,8 +2,8 @@
     <div layout="row"  layout-wrap layout-fill>
         <div flex="35" flex-md="100" flex-sm="100">
             <md-card>
-                <div layout="column" layout-margin md-theme="top">
-                    <div layout="row" layout-align="space-around center">
+                <div layout="column"  md-theme="top">
+                    <div layout="row" layout-align="space-around center" layout-margin layout-fill>
                         <div flex="10"><span class="list-order-color">1</span></div>
                         <md-select flex="85" class="md-whiteframe-z1 select-chip" placeholder="Escoger periodo" ng-model="periodo" ng-change="getcontenido(periodo)">
                             <md-option value="1">Primer periodo</md-option>
@@ -12,7 +12,7 @@
                             <md-option value="4">Cuarto periodo</md-option>
                         </md-select>
                     </div>
-                    <div layout="row" layout-align="space-around center">
+                    <div layout="row" layout-align="space-around center" layout-margin layout-fill>
                         <div flex="10"><span class="list-order-color">2</span></div>
 
                         <md-select ng-disabled="logroSW" flex="85" class="md-whiteframe-z1 select-chip" placeholder="Escoger indicador" ng-model="logro" ng-change="getCalificaciones(logro)">
@@ -20,6 +20,11 @@
                         </md-select>
                     </div>
                 </div>
+                    <div class="alert alert-danger" role="alert" ng-show="porcentaje > 100" style="border-radius: 0px;  margin-bottom: 0px;">
+                      La suma de la ponderación de cada evaluación es de {{porcentaje}}% y exede el 100%, para cambiarla haga click en el boton editar
+                        <span class="label label-success"><i class="fa fa-edit fa-lg"></i></span>
+                        de <a href="" class="alert-link" ui-sref="Docente.Contenido">Contenido</a>
+                    </div>
                     <md-list>
                       <a ui-sref="Docente.Estudiantes.calificaciones({idcalificacion:evaluacion.id_calificacion})" ui-sref-active="active" ng-repeat="evaluacion in evaluaciones">
                         <md-list-item  class="md-3-line" ng-click="chaangeCalificacion(evaluacion.id_calificacion)">
@@ -39,7 +44,7 @@
             </md-card>
         </div>
 
-        <div flex="65" flex-md="100" flex-sm="100">
+        <div flex="65" flex-md="100" flex-sm="100" ng-show="showCalificaciones">
             <md-card  layout="row" layout-padding layout-align="center center">
                         <div flex class="text-center">
                             <h3  style="margin: 0">3.5</h3>
@@ -85,23 +90,16 @@
                             <img ng-src="/images/yeoman.png" class="md-avatar" alt="{{estudiante.nombre}}" style="width:35px" />
                         </div>
                         <div flex-sm="60" flex-md="45" flex-gt-md="50" style="padding-left:15px">
-                        <div class="text-capitalize"> <!-- href ng-click="showStudentProfile($event, estudiante)" -->
-                            {{nota.nombre | lowercase}} {{nota.apellido | lowercase}}
-                        </div>
-                        </div>
-                        <!-- <div flex-sm="25" flex-md="40" flex-gt-md="20">
-                            <div layout="row" layout-fill>
-                                <div flex layout="row" layout-fill layout-align="center center">
-                                    <div class="calificacion-color" style="background-color:rgba(92, 184, 92, 0.25);" >{{nota.nota}}</div>
-                                </div>
+                            <div class="text-capitalize"> <!-- href ng-click="showStudentProfile($event, estudiante)" -->
+                                {{nota.nombre | lowercase}} {{nota.apellido | lowercase}}
                             </div>
-                        </div> -->
+                        </div>
                         <div flex-sm="25" flex-md="40" flex-gt-md="20">
                             <div layout="row" layout-fill>
                                 <div flex layout="row" layout-fill layout-align="center center">
                                   <md-input-container flex>
                                       <label></label>
-                                      <input type="number"  min="0" max="5" step="0.1" ng-change="saveNota(nota)" class="text-center" ng-model="nota.nota">
+                                      <input type="number" ng-disabled="porcentaje > 100" min="0" max="5" step="0.1" ng-change="saveNota(nota)" class="text-center" ng-model="nota.nota">
                                   </md-input-container>
                                 </div>
                             </div>
