@@ -45,5 +45,7 @@ angular.module('SerFlugel', ['ngResource'])
 			inasistenciasVsMaterias : $resource('http://' + Config.ip + ':' + Config.port + '/' +  Config.version + '/stat/inasistenciasvsmaterias.json'),
 			inasistenciasVsGrados : $resource('http://' + Config.ip + ':' + Config.port + '/' +  Config.version + '/stat/inasistenciasvsgrados.json'),
 			inasistenciasVsDiaSemana : $resource('http://' + Config.ip + ':' + Config.port + '/' +  Config.version + '/stat/inasistenciasvsdiasemana.json'),
+
+			calificacionContenido: $resource('http://' + Config.ip + ':' + Config.port + '/' + Config.version + '/stat/calificacioncontenido.json')
 	};
 }]);

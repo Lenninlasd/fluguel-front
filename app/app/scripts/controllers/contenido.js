@@ -1,5 +1,5 @@
 angular.module('Dirapp')
-  .controller('ContenidoCtrl', ['$scope', '$mdDialog', '$stateParams', '$state', 'Docente', function ($scope, $mdDialog, $stateParams, $state, Docente) {
+  .controller('ContenidoCtrl', ['$scope', '$mdDialog', '$stateParams', '$state', 'Docente', 'Analytics', function ($scope, $mdDialog, $stateParams, $state, Docente, Analytics) {
     'use strict';
 
     var idClase = $stateParams.idclase;
@@ -13,15 +13,37 @@ angular.module('Dirapp')
         {periodo:'Tercer Perido',targetid:'tercero',expanded:false,id:'3'},
         {periodo:'Cuarto Perido',targetid:'cuarto',expanded:false,id:'4'}
     ];
-
+    // Lista de logros y calificaciones.
     Docente.contenido.query({idclase: idClase}, function(logros){
     	$scope.Logros = logros;
 
         Docente.calificaciones.query({idclase: idClase}, function(evaluaciones){
             $scope.evaluaciones = evaluaciones;
-            console.log(evaluaciones);
+            //console.log(evaluaciones);
             //$('#areaConcepto').flexible();
         });
+    });
+
+    // Lista de calificaciones con cantidad de notas evaluadas para el avance del contenido.
+    Analytics.calificacionContenido.query({idclase: idClase}, function (stat) {
+        //console.log(stat);
+        stat = _.groupBy(stat, 'id_logro');
+        console.log(stat);
+        var progreso = _.mapObject(stat, function(val, key) {
+
+            var sum = _.reduce(val, function(memo, obj){
+                var porcCalificacion = obj.Calificados/obj.numEstudiantes;
+                console.log(porcCalificacion);
+                if ( porcCalificacion !== 1) {
+                    return memo;
+                }else {
+                    return memo + 1;
+                }
+
+            }, 0);
+            return sum/_.size(val);
+        });
+        console.log(progreso);
     });
 
     // dado un id de indicador calcula la suma total de los porcentajes de los logros
