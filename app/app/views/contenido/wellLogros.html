@@ -7,7 +7,8 @@
         <span class="md-body-1">{{logro.contenido}}&nbsp&nbsp&nbsp</span>
 
       </p>
-      <small class="md-caption text-muted">{{"5 Evaluaciones"}}</small>
+      <small class="md-caption text-muted">{{countEval[logro.id_indicador] || 0}} Evaluaciones &nbsp {{progreso[logro.id_indicador] | number:1}}<span ng-show="progreso[logro.id_indicador]">% Completado</span>
+      </small>
       <span class="label label-info" style="padding: 0.3em 0.6em 0.2em;">{{logro.fecha_vencimiento |date:format:timezone}}</span>
     </div>
 

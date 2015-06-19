@@ -6,6 +6,9 @@ angular.module('Dirapp')
     $scope.logro = {};
     $scope.evaluacion = {};
     $scope.porcentaje = {};
+    $scope.progreso = {};
+    $scope.totalProgreso = 0;
+    $scope.countEval = {};
 
     $scope.Periodos =[
         {periodo:'Primer Perido',targetid:'primero',expanded:true,id:'1'},
@@ -16,34 +19,39 @@ angular.module('Dirapp')
     // Lista de logros y calificaciones.
     Docente.contenido.query({idclase: idClase}, function(logros){
     	$scope.Logros = logros;
+      Docente.calificaciones.query({idclase: idClase}, function(evaluaciones){
+          $scope.evaluaciones = evaluaciones;
 
-        Docente.calificaciones.query({idclase: idClase}, function(evaluaciones){
-            $scope.evaluaciones = evaluaciones;
-            //console.log(evaluaciones);
-            //$('#areaConcepto').flexible();
-        });
+          var groupEval = _.groupBy(evaluaciones, 'id_indicador');
+          $scope.countEval = _.mapObject(groupEval, function (val, key) {
+              return _.size(val);
+          });
+          console.log($scope.countEval);
+      });
     });
 
     // Lista de calificaciones con cantidad de notas evaluadas para el avance del contenido.
+    // progreso es un obj que contiene el % de progreso de casa logro.
+    // totalProgreso el el porcentaje de progreso de Toooodos los logros (filtrar por periodo actual)
     Analytics.calificacionContenido.query({idclase: idClase}, function (stat) {
-        //console.log(stat);
-        stat = _.groupBy(stat, 'id_logro');
-        console.log(stat);
-        var progreso = _.mapObject(stat, function(val, key) {
+        var groupStat = _.groupBy(stat, 'id_logro');
+        var totalProgreso = 0;
+        var progreso = _.mapObject(groupStat, function(val, key) {
 
             var sum = _.reduce(val, function(memo, obj){
                 var porcCalificacion = obj.Calificados/obj.numEstudiantes;
-                console.log(porcCalificacion);
+                // console.log(porcCalificacion);
                 if ( porcCalificacion !== 1) {
                     return memo;
                 }else {
                     return memo + 1;
                 }
-
             }, 0);
-            return sum/_.size(val);
+            totalProgreso = sum + totalProgreso;
+            return sum/_.size(val)*100 || 0;
         });
-        console.log(progreso);
+        $scope.progreso = progreso;
+        $scope.totalProgreso = (totalProgreso/_.size(stat))*100 || 0;
     });
 
     // dado un id de indicador calcula la suma total de los porcentajes de los logros
@@ -153,12 +161,10 @@ angular.module('Dirapp')
 
     $scope.calificar2 = function(id_calificacion){
         var url = '/Docente/' + idClase + '/Estudiantes/calificaciones?idcalificacion=' + id_calificacion;
-        console.log(url);
         $location.path(url);
     };
     $scope.calificar = function(id_calificacion){
         //var url = 'Docente/10095/Estudiantes/calificaciones?idcalificacion=dsfsfdfdf';
-        //console.log(url);
         $state.go('Docente.Estudiantes.calificaciones', {idcalificacion: id_calificacion});
     };
 }]);
