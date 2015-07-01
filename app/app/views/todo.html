@@ -40,7 +40,7 @@
                     <li><md-button ng-repeat="clase in clases" ui-sref-active="active" ng-href="{{routeChangeClass(clase.id_clase)}}" class="a-menu">
                             <strong>{{clase.nombre_curso}}{{clase.indice}}</strong>
                             <small style="font-size:0.7em"> {{clase.materia}}</small>
-                            <a ui-sref="Docente({idclase:clase.id_clase})"></a>
+                            <a style="padding:0" ui-sref="Docente({idclase:clase.id_clase})"></a>
                         </md-button>
                     </li>
                 </ul>

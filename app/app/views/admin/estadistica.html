@@ -10,39 +10,46 @@
           </md-select> -->
       </div>
   </md-toolbar>
-  <md-card>
-      <md-card-content>
-          <h2 class="md-title">Evolución del porcentaje de inasistencia.</h2>
-          <div style="transform: rotate(-90deg);width: 110px;position: relative;top: 70px;left: -50px;">% de inasistencia</div>
-          <div flex="70" class="ct-chart" id="ct-chart1"></div>
-          <div class="text-center">Días del més</div>
-      </md-card-content>
-  </md-card>
 
-  <md-card>
-      <md-card-content>
-          <h2 class="md-title">Comparación de inasistencias versus materias</h2>
-          <div style="transform: rotate(-90deg);width: 110px;position: relative;top: 70px;left: -50px;">% de inasistencia</div>
-          <div class="ct-chart" id="ct-chart2"></div>
-          <div class="text-center">Materias</div>
-      </md-card-content>
-  </md-card>
+   <div layout="row" layout-margin layout-align="center center" ng-show="cont < 4">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
 
-  <md-card>
-      <md-card-content>
-          <h2 class="md-title">Comparación de inasistencias versus grados</h2>
-          <div style="transform: rotate(-90deg);width: 110px;position: relative;top: 70px;left: -50px;">% de inasistencia</div>
-          <div class="ct-chart" id="ct-chart4"></div>
-          <div class="text-center">Grados</div>
-      </md-card-content>
-  </md-card>
+  <div style="visibility: {{cont < 4 ? 'hidden': 'visible'}}">
+      <md-card>
+          <md-card-content>
+              <h2 class="md-title">Evolución del porcentaje de inasistencia.</h2>
+              <div style="transform: rotate(-90deg);width: 110px;position: relative;top: 70px;left: -50px;">% de inasistencia</div>
+              <div flex="70" class="ct-chart" id="ct-chart1"></div>
+              <div class="text-center">Días del més</div>
+          </md-card-content>
+      </md-card>
 
-  <md-card>
-      <md-card-content >
-          <h2 class="md-title">Comparación de inasistencias versus los dias de la semana</h2>
-          <div style="transform: rotate(-90deg);width: 110px;position: relative;top: 70px;left: -50px;">% de inasistencia</div>
-          <div class="ct-chart" id="ct-chart3"></div>
-          <div class="text-center">Días de la semana</div>
-      </md-card-content>
-  </md-card>
+      <md-card>
+          <md-card-content>
+              <h2 class="md-title">Comparación de inasistencias versus materias</h2>
+              <div style="transform: rotate(-90deg);width: 110px;position: relative;top: 70px;left: -50px;">% de inasistencia</div>
+              <div class="ct-chart" id="ct-chart2"></div>
+              <div class="text-center">Materias</div>
+          </md-card-content>
+      </md-card>
+
+      <md-card>
+          <md-card-content>
+              <h2 class="md-title">Comparación de inasistencias versus grados</h2>
+              <div style="transform: rotate(-90deg);width: 110px;position: relative;top: 70px;left: -50px;">% de inasistencia</div>
+              <div class="ct-chart" id="ct-chart4"></div>
+              <div class="text-center">Grados</div>
+          </md-card-content>
+      </md-card>
+
+      <md-card>
+          <md-card-content >
+              <h2 class="md-title">Comparación de inasistencias versus los dias de la semana</h2>
+              <div style="transform: rotate(-90deg);width: 110px;position: relative;top: 70px;left: -50px;">% de inasistencia</div>
+              <div class="ct-chart" id="ct-chart3"></div>
+              <div class="text-center">Días de la semana</div>
+          </md-card-content>
+      </md-card>
+  </div>
 </div>

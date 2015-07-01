@@ -129,9 +129,9 @@ angular.module('Dirapp')
 }])
 .controller('EstadisticaCtrl',['$scope', 'Analytics', function ($scope, Analytics){
     'use strict';
-
+    $scope.cont = 0
     Analytics.evolInasistencia.query(function (evols) {
-
+        ++$scope.cont;
         new Chartist.Line('#ct-chart1', {
               labels: _.pluck(evols, 'fecha'),
               series: [
@@ -159,7 +159,7 @@ angular.module('Dirapp')
     });
 
     Analytics.inasistenciasVsMaterias.query(function (inaMaterias) {
-        //console.log(inaMaterias);
+        ++$scope.cont;
         new Chartist.Bar('#ct-chart2', {
           labels: _.pluck(inaMaterias, 'materia'),
           series: [
@@ -169,7 +169,7 @@ angular.module('Dirapp')
     });
 
     Analytics.inasistenciasVsGrados.query(function (inaGrados) {
-        //console.log(inaGrados);
+        ++$scope.cont;
         var nombreCurso = _.pluck(inaGrados, 'nombre_curso');
         var indice = _.pluck(inaGrados, 'indice');
         var curso = _.zip(nombreCurso, indice);
@@ -184,7 +184,7 @@ angular.module('Dirapp')
     });
 
     Analytics.inasistenciasVsDiaSemana.query(function (inaDias) {
-        //console.log(inaDias);
+        ++$scope.cont;
         new Chartist.Bar('#ct-chart3', {
           labels: _.pluck(inaDias, 'diaNombre'),
           series: [
@@ -197,9 +197,10 @@ angular.module('Dirapp')
 
 
 }]).controller('EstNotasCtrl',['$scope', 'Analytics', function ($scope, Analytics){
-
+    $scope.loadingEstNotas = true;
+    $scope.cont = 0
     Analytics.promedioVsMaterias.query(function (materias) {
-        console.log(materias);
+        ++$scope.cont;
         new Chartist.Bar('#ct-chart2', {
           labels: _.pluck(materias, 'materia'),
           series: [
@@ -210,7 +211,7 @@ angular.module('Dirapp')
 
 
     Analytics.promedioVsGrados.query(function (grados) {
-        console.log(grados);
+        ++$scope.cont;
         new Chartist.Bar('#ct-chart4', {
           labels: _.pluck(grados, 'nombre_curso'),
           series: [

@@ -10,6 +10,8 @@ angular.module('Dirapp')
     $scope.totalProgreso = 0;
     $scope.countEval = {};
 
+
+
     $scope.Periodos =[
         {periodo:'Primer Perido',targetid:'primero',expanded:true,id:'1'},
         {periodo:'Segundo Perido',targetid:'segundo',expanded:false,id:'2'},
@@ -17,17 +19,23 @@ angular.module('Dirapp')
         {periodo:'Cuarto Perido',targetid:'cuarto',expanded:false,id:'4'}
     ];
     // Lista de logros y calificaciones.
+    $scope.loadingContenido = true;
+    $scope.hayContenido = true;
     Docente.contenido.query({idclase: idClase}, function(logros){
+        
     	$scope.Logros = logros;
-      Docente.calificaciones.query({idclase: idClase}, function(evaluaciones){
-          $scope.evaluaciones = evaluaciones;
+        $scope.loadingContenido = false;
+        $scope.hayContenido = _.size(logros) ? true : false;
 
-          var groupEval = _.groupBy(evaluaciones, 'id_indicador');
-          $scope.countEval = _.mapObject(groupEval, function (val, key) {
-              return _.size(val);
-          });
-          console.log($scope.countEval);
-      });
+        Docente.calificaciones.query({idclase: idClase}, function(evaluaciones){
+            $scope.evaluaciones = evaluaciones;
+
+            var groupEval = _.groupBy(evaluaciones, 'id_indicador');
+            $scope.countEval = _.mapObject(groupEval, function (val, key) {
+                return _.size(val);
+            });
+            console.log($scope.countEval);
+        });
     });
 
     // Lista de calificaciones con cantidad de notas evaluadas para el avance del contenido.

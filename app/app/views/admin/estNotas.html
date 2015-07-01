@@ -10,7 +10,12 @@
             </md-select> -->
         </div>
     </md-toolbar>
-    <div layout-margin>
+
+    <div layout="row" layout-margin layout-align="center center" ng-show="cont < 2">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+
+    <div layout-margin style="visibility: {{cont < 2 ? 'hidden': 'visible'}}">
       <md-card>
           <md-select name="myModel2" placeholder="Filtro por grados" ng-model="myModel2" required style="font-size:1.4em;padding: 12px;">
               <md-option value="1">1° Primero</md-option>
