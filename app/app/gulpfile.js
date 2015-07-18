@@ -1,9 +1,7 @@
+
 var gulp = require('gulp');
 var plumber = require('gulp-plumber');
 var plugins = require('gulp-load-plugins')();
-var imagemin = require('gulp-imagemin');
-var pngquant = require('imagemin-pngquant');
-var imageminOptipng = require('imagemin-optipng');
 var gulpFilter = require('gulp-filter');
 var del = require('del');
 var es = require('event-stream');
@@ -11,12 +9,12 @@ var bowerFiles = require('main-bower-files');
 var print = require('gulp-print');
 var Q = require('q');
 
-// == PATH STRINGS ========
+// ======== PATH STRINGS ========//
 
 var paths = {
     scripts: 'app/**/*.js',
     styles: ['./app/**/*.css', './app/**/*.scss'],
-    images: ['./app/images/**/*','./app/images/**/*.png'],
+    images: './images/**/*',
     index: './app/index.html',
     partials: ['app/**/*.html', '!app/index.html'],
     distDev: './dist.dev',
@@ -25,7 +23,7 @@ var paths = {
     scriptsDevServer: 'devServer/**/*.js'
 };
 
-// == PIPE SEGMENTS ========
+// ====== PIPE SEGMENTS ========//
 
 var pipes = {};
 
@@ -91,7 +89,7 @@ pipes.builtVendorScriptsProd = function() {
          .pipe(cssFilter)
          .pipe(plugins.minifyCss())
          .pipe(plugins.concat('vendor.min.css'))
-         .pipe(gulp.dest(paths.distProd + '/styles'))
+         .pipe(gulp.dest(paths.distScriptsProd))
         .pipe(cssFilter.restore());
 
 
@@ -153,8 +151,6 @@ pipes.processedImagesDev = function() {
 
 pipes.processedImagesProd = function() {
     return gulp.src(paths.images)
-        .pipe(imagemin({ progressive: true, use: [pngquant()] }))
-         .pipe(imageminOptipng({optimizationLevel: 3})())
         .pipe(gulp.dest(paths.distProd + '/images/'));
 };
 
@@ -193,10 +189,11 @@ pipes.builtIndexProd = function() {
     return pipes.validatedIndex()
         .pipe(plumber())
         .pipe(gulp.dest(paths.distProd)) // write first to get relative path for inject
-        .pipe(plugins.inject(vendorScripts, { ignorePath:'/dist.prod', name: 'bower'}))
-        .pipe(plugins.inject(appScripts, {addRootSlash: false, ignorePath:'/dist.prod'}))
-        .pipe(plugins.inject(appStyles, {addRootSlash: false, ignorePath:'/dist.prod'}))
-          .pipe(plugins.htmlmin({collapseWhitespace: true}))
+        
+        .pipe(plugins.inject(vendorScripts, {relative: true, name: 'bower'}))
+        .pipe(plugins.inject(appScripts, {relative: true}))
+        .pipe(plugins.inject(appStyles, {relative: true}))
+        .pipe(plugins.htmlmin({collapseWhitespace: true, removeComments: true}))
         .pipe(gulp.dest(paths.distProd));
 };
 

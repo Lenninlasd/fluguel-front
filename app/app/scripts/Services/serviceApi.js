@@ -2,13 +2,17 @@
 angular.module('SerFlugel', ['ngResource'])
 
 .factory('Config', function () {
+
 	return {
+
 		version : '0.2.2',
 		ip: location.hostname,
 		port: 3001
+
 	};
 })
 .factory('Docente',['$resource', 'Config', function ContenidoFactory($resource, Config){
+	'use strict';
 	return {
 		listaClases : $resource('http://' + Config.ip + ':' + Config.port + '/' +  Config.version + '/docente/listaclases.json'),
 		contenido : $resource('http://' + Config.ip + ':' + Config.port + '/' +  Config.version + '/docente/contenido.json', {}, { update: {method: 'PUT'}}),
@@ -19,12 +23,14 @@ angular.module('SerFlugel', ['ngResource'])
 	};
 }])
 .factory('Usuario',['$resource', 'Config', function ContenidoFactory($resource, Config){
+	'use strict';
 	return {
 		login : $resource('http://' + Config.ip + ':' + Config.port + '/' +  Config.version + '/usuario/login.json'),
 		logout : $resource('http://' + Config.ip + ':' + Config.port + '/' +  Config.version + '/usuario/logout.json')
 	};
 }])
 .factory('Coordinador',['$resource', 'Config', function ContenidoFactory($resource, Config){
+	'use strict';
 	return {
 		estudiantes : $resource('http://' + Config.ip + ':' + Config.port + '/' +  Config.version + '/coordinador/estudiante.json'),
 		cursos: $resource('http://' + Config.ip + ':' + Config.port + '/' + Config.version + '/coordinador/cursos.json'),
@@ -32,23 +38,10 @@ angular.module('SerFlugel', ['ngResource'])
 		materias: $resource('http://' + Config.ip + ':' + Config.port + '/' + Config.version + '/coordinador/materias.json')
 	};
 }])
-
-.controller('testCotroller', ['$scope', 'Docente', function ($scope, Docente) {
-
-	// Datos GET
-	var query = {idclase: '13775731636734635'};
-	Docente.contenido.query(query, function(data){
-		console.log(data);
-	}, function(data){
-		console.log(data); // Error
-	});
-
-	query = {idclase: '13775731636734635', idindicador: '35', idcalificacion: '13996916046293832'};
-	Docente.notas.query(query, function(data){
-		console.log(data);
-	}, function(data){
-		// Error
-		console.log(data);
-	});
-
+.factory('Analytics',['$resource', 'Config', function ContenidoFactory($resource, Config){
+	'use strict';
+	return {
+			promedioVsMaterias : $resource('http://' + Config.ip + ':' + Config.port + '/' +  Config.version + '/stat/notasmaterias.json'),
+			promedioVsGrados : $resource('http://' + Config.ip + ':' + Config.port + '/' + Config.version + '/stat/notasgrados.json', {}, { update: {method: 'PUT'}}),
+	};
 }]);

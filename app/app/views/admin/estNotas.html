@@ -1,0 +1,50 @@
+<div layout="column" layout-margin>
+    <md-toolbar layout="row">
+        <div flex="60" layout="row" layout-padding layout-align="start center">Notas</div>
+        <div flex="35" layout="row" layout-align="end center">
+            <md-select  name="myModel" placeholder="Periodo" ng-model="myModel" required md-theme="top">
+                <md-option value="1">Primer período</md-option>
+                <md-option value="2">Segundo período</md-option>
+                <md-option value="3">Tercer período</md-option>
+                <md-option value="4">Cuarto período</md-option>
+            </md-select>
+        </div>
+    </md-toolbar>
+    <div layout-margin>
+      <md-card>
+          <md-select name="myModel2" placeholder="Filtro por grados" ng-model="myModel2" required style="font-size:1.4em;padding: 12px;">
+              <md-option value="1">1° Primero</md-option>
+              <md-option value="2">2° Segundo</md-option>
+              <md-option value="3">3° Tercero</md-option>
+              <md-option value="4">4° Cuarto</md-option>
+              <md-option value="5">5° Quinto</md-option>
+              <md-option value="6">6° Sexto</md-option>
+              <md-option value="7">7° Septimo</md-option>
+          </md-select>
+          <md-card-content>
+              <h2 class="md-title">Comparación de promedios versus materias</h2>
+              <div style="transform: rotate(-90deg);width: 110px;position: relative;top: 70px;left: -50px;">Promedio</div>
+              <div class="ct-chart" id="ct-chart2"></div>
+              <div class="text-center">Materias</div>
+          </md-card-content>
+      </md-card>
+
+      <md-card>
+          <md-select name="myModel2" placeholder="Filtro por Materias" ng-model="myModel2" required style="font-size:1.4em;padding: 12px;">
+              <md-option value="1">Matemáticas</md-option>
+              <md-option value="2">Español</md-option>
+              <md-option value="3">Sociales</md-option>
+              <md-option value="4">Informática</md-option>
+              <md-option value="5">Edu. Física</md-option>
+              <md-option value="6">Química</md-option>
+              <md-option value="7">Biologia</md-option>
+          </md-select>
+          <md-card-content>
+              <h2 class="md-title">Comparación de promedios versus grados</h2>
+              <div style="transform: rotate(-90deg);width: 110px;position: relative;top: 70px;left: -50px;">Promedio</div>
+              <div class="ct-chart" id="ct-chart4"></div>
+              <div class="text-center">Grados</div>
+          </md-card-content>
+      </md-card>
+    </div>
+</div>

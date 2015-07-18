@@ -6,12 +6,14 @@
         </md-toolbar>
 
         <section layout="row" flex>
-            <md-sidenav md-swipe-left="toggleSidenav('left')" flex class="md-sidenav-left md-whiteframe-z2-custom" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" style="background:rgb(20, 76, 135);">
+            <md-sidenav flex-md="25" flex-gt-md="20" md-swipe-left="toggleSidenav('left')" flex class="md-sidenav-left md-whiteframe-z2-custom" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" style="background:rgb(20, 76, 135);">
                 <div style="margin-top:20px">
                     <ul class="menu-list">
                         <li>
-                            <md-button ui-sref="admin.cursos" ui-sref-active="active" ng-click="hideChildMenu()" class="a-menu"><i class="fa fa-list-ul fa-lg"></i>&nbsp Cursos</md-button>
-                            <ul class="menu-list menu-toggle-list" ng-show="subMenu">
+                            <md-button ui-sref="admin.cursos" ui-sref-active="active" class="a-menu" data-toggle="collapse" data-target="#listaCursos">
+                              <i class="fa fa-list-ul fa-lg"></i>&nbsp Cursos
+                            </md-button>
+                            <ul class="menu-list menu-toggle-list panel-collapse collapse" id="listaCursos">
                                 <li ng-repeat="curso in cursos | orderBy:['grado', indice]">
                                     <md-button ui-sref="admin.estudiantes({idcurso: curso.id_curso})" ui-sref-active="active" class="a-menu">
                                         {{curso.grado}} {{curso.nombre_curso}} <span ng-show="curso.indice">-</span> {{curso.indice}}
@@ -19,15 +21,14 @@
                                 </li>
                             </ul>
                         </li>
-                        <!-- <li>
-                            <md-button ui-sref-active="active" ui-sref="admin.estudiantes" ng-click="showChildMenu()" class="a-menu">
-                                <i class="fa fa-child"></i><i class="fa fa-child fa-lg"></i> Estudiantes
-                            </md-button>
-                        </li> -->
-                        <li><md-button ui-sref-active="active" ui-sref="admin.docentes" ng-click="hideChildMenu()" class="a-menu"><i class="fa fa-users fa-lg"></i>&nbsp Docentes</md-button></li>
-                        <li><md-button ui-sref-active="active" ui-sref="admin.materias" ng-click="hideChildMenu()" class="a-menu"><i class="fa fa-th-large fa-lg"></i>&nbsp Materias</md-button></li>
-                        <li><md-button ui-sref-active="active" ui-sref="admin.estadistica" ng-click="hideChildMenu()" class="a-menu"><i class="fa fa-pie-chart fa-lg"></i>&nbsp Estadisticas</md-button></li>
-                        <li><md-button ui-sref-active="active" ng-href="{{googleUrl}}" ng-click="hideChildMenu()" class="a-menu"><i class="fa fa-sliders fa-lg"></i>&nbsp Administracion</md-button></li>
+                        <li><md-button ui-sref-active="active" ui-sref="admin.docentes" class="a-menu"><i class="fa fa-users fa-lg"></i>&nbsp Docentes</md-button></li>
+                        <li><md-button ui-sref-active="active" ui-sref="admin.materias" class="a-menu"><i class="fa fa-th-large fa-lg"></i>&nbsp Materias</md-button></li>
+                        <li><md-button data-toggle="collapse" data-target="#a" href class="a-menu"><i class="fa fa-pie-chart fa-lg"></i>&nbsp Estadisticas</md-button></li>
+                            <ul class="menu-list menu-toggle-list panel-collapse collapse" id="a">
+                              <li><md-button ui-sref="admin.estadistica" ui-sref-active="active" class="a-menu">Inasistecia</md-button></li>
+                              <li><md-button ui-sref="admin.estnotas" ui-sref-active="active" class="a-menu">Notas</md-button></li>
+                            </ul>
+                        <li><md-button data-toggle="collapse" data-target="#a" ui-sref-active="active" ng-href="{{googleUrl}}" class="a-menu"><i class="fa fa-sliders fa-lg"></i>&nbsp Administracion</md-button></li>
                     </ul>
                 </div>
             </md-sidenav>
