@@ -1,7 +1,6 @@
 'use strict';
 angular.module('Dirapp')
-  .controller('ContenidoCtrl', ['$scope', '$mdDialog', '$stateParams', '$state', 'Docente', 'Analytics', function ($scope, $mdDialog, $stateParams, $state, Docente, Analytics) {
-    'use strict';
+  .controller('ContenidoCtrl', ['$scope', '$mdDialog', '$stateParams', '$state', 'Docente', 'Analytics', '$location', function ($scope, $mdDialog, $stateParams, $state, Docente, Analytics, $location) {
 
     var idClase = $stateParams.idclase;
     $scope.logro = {};
@@ -23,7 +22,7 @@ angular.module('Dirapp')
     $scope.loadingContenido = true;
     $scope.hayContenido = true;
     Docente.contenido.query({idclase: idClase}, function(logros){
-        
+
     	$scope.Logros = logros;
         $scope.loadingContenido = false;
         $scope.hayContenido = _.size(logros) ? true : false;
@@ -67,10 +66,10 @@ angular.module('Dirapp')
     $scope.getPorcentaje = function (id_indicador, evaluaciones) {
        var porcentaje = _.chain(evaluaciones)
                   .where({id_indicador: id_indicador})
-                  .reduce(function(memo, obj){ return memo + obj.ponderacion}, 0);
+                  .reduce(function(memo, obj){ return memo + obj.ponderacion;}, 0);
        $scope.porcentaje[id_indicador] = porcentaje;
        return porcentaje;
-    }
+    };
 
     $scope.saveLogro = function(id_indicador){
 

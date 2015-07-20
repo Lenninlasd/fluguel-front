@@ -1,7 +1,6 @@
 'use strict';
 //Controlador del perfil del estudiante
 function DialogTeacherProfile($scope, $mdDialog, docente) {
-    'use strict';
     $scope.cancel = function() {
       $mdDialog.cancel();
     };
@@ -11,13 +10,11 @@ function DialogTeacherProfile($scope, $mdDialog, docente) {
 
 angular.module('Dirapp')
 .factory('MenuAdmin', function() {
-  'use strict';
     return {
       subMenu: false
     };
 })
 .controller('AdminCtrl',['$scope','$mdSidenav', '$location', 'Usuario', 'Coordinador', function ($scope,$mdSidenav, $location, Usuario, Coordinador){
-    'use strict';
     $scope.subMenu = false;
 
     // Valida que la sesion haya iniciado
@@ -63,7 +60,6 @@ angular.module('Dirapp')
 
 }])
 .controller('ListaEstudiantesCtrl',['$scope', '$location', 'Coordinador', '$stateParams', '$mdDialog',  function ($scope, $location, Coordinador, $stateParams, $mdDialog){
-    'use strict';
     $scope.subMenu = false;
     var nameMenu = $location.$$path.split('/')[2];
     if (nameMenu === 'estudiantes') {
@@ -96,7 +92,6 @@ angular.module('Dirapp')
     };
 
 }]).controller('ListaDocentesCtrl',['$scope', 'Coordinador', '$mdDialog', function ($scope, Coordinador, $mdDialog){
-    'use strict';
     $scope.docentes = [];
     Coordinador.profesores.query(function (docentes) {
         $scope.docentes = docentes;
@@ -120,7 +115,6 @@ angular.module('Dirapp')
     };
 
 }]).controller('ListaMateriasCtrl',['$scope', '$location', 'Coordinador', function ($scope, $location, Coordinador){
-    'use strict';
     $scope.materias = [];
     Coordinador.materias.query(function (materias) {
         $scope.materias = materias;
@@ -129,8 +123,7 @@ angular.module('Dirapp')
 
 }])
 .controller('EstadisticaCtrl',['$scope', 'Analytics', function ($scope, Analytics){
-    'use strict';
-    $scope.cont = 0
+    $scope.cont = 0;
     Analytics.evolInasistencia.query(function (evols) {
         ++$scope.cont;
         new Chartist.Line('#ct-chart1', {
@@ -174,10 +167,10 @@ angular.module('Dirapp')
         var nombreCurso = _.pluck(inaGrados, 'nombre_curso');
         var indice = _.pluck(inaGrados, 'indice');
         var curso = _.zip(nombreCurso, indice);
-        curso.forEach(function(element){console.log(element.join('-'))});
+        curso.forEach(function(element){console.log(element.join('-'));});
 
         new Chartist.Bar('#ct-chart4', {
-          labels: _.map(curso, function(element){ return element.join(' ')}),
+          labels: _.map(curso, function(element){ return element.join(' ');}),
           series: [
             _.pluck(inaGrados, 'inasistencia'),
           ]
@@ -196,7 +189,7 @@ angular.module('Dirapp')
 
 }]).controller('EstNotasCtrl',['$scope', 'Analytics', function ($scope, Analytics){
     $scope.loadingEstNotas = true;
-    $scope.cont = 0
+    $scope.cont = 0;
     Analytics.promedioVsMaterias.query(function (materias) {
         ++$scope.cont;
         new Chartist.Bar('#ct-chart2', {

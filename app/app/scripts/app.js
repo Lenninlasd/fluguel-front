@@ -119,8 +119,8 @@ angular.module('CDapp',[
         controller: 'EstadisticaCtrl'
     })
     .state('admin.estnotas', {
-        url: "/estadisticanotas",
-        templateUrl: "views/admin/estNotas.html",
+        url: '/estadisticanotas',
+        templateUrl: 'views/admin/estNotas.html',
         controller: 'EstNotasCtrl'
     });
 })

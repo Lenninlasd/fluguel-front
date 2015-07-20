@@ -2,25 +2,23 @@
 <div class="container-fluid logro">
 
       <div class="row well-margin well-sm logro hidden-xs" style="cursor:pointer;" data-toggle="collapse" data-target="#{{logro.id_indicador}}" aria-expanded="false">
-        <div class=" col-md-11 logro">
-          <p aling="justify" >
-            <span class="md-body-1">{{logro.contenido}}&nbsp&nbsp&nbsp</span>
+          <div class=" col-md-11 logro">
+              <p aling="justify" >
+                  <span class="md-body-1">{{logro.contenido}}&nbsp&nbsp&nbsp</span>
+              </p>
+              <small class="md-caption text-muted">{{countEval[logro.id_indicador] || 0}} Evaluaciones &nbsp {{progreso[logro.id_indicador] | number:1}}% Completado
+              </small>
+              <span class="label label-info" style="padding: 0.3em 0.6em 0.2em;">{{logro.fecha_vencimiento |date:format:timezone}}</span>
+          </div>
 
-      </p>
-      <small class="md-caption text-muted">{{countEval[logro.id_indicador] || 0}} Evaluaciones &nbsp {{progreso[logro.id_indicador] | number:1}}% Completado
-      </small>
-      <span class="label label-info" style="padding: 0.3em 0.6em 0.2em;">{{logro.fecha_vencimiento |date:format:timezone}}</span>
-    </div>
-
-        <div class="col-md-1 logro text-right">
-            <span title="Editar Logro" data-toggle="tooltip" data-placement="top">
-                <button  class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalNewLogro" ng-click="launchEditModal(logro.id_indicador)">
-                    <i class="fa fa-edit fa-lg"></i> Editar
-                </button>
-            </span>
-        </div>
-    </div>
-
+          <div class="col-md-1 logro text-right">
+              <span title="Editar Logro" data-toggle="tooltip" data-placement="top">
+                  <button  class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalNewLogro" ng-click="launchEditModal(logro.id_indicador)">
+                      <i class="fa fa-edit fa-lg"></i> Editar
+                  </button>
+              </span>
+          </div>
+      </div>
 
     <!-- tamaño grande de pantalla muestra de logros  -->
 

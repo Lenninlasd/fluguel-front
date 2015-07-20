@@ -8,9 +8,9 @@ angular.module('Dirapp')
             $location.path('/login');
         }else {
             var rol = data.userData.rol;
-            if (rol == 'admin') {
+            if (rol === 'admin') {
                 return $location.path('/admin');
-            }else if (rol == 'profesor') {
+            }else if (rol === 'profesor') {
                 Docente.listaClases.query({idprofesor: data.userData.identificacion}, function (clases) {
                     $scope.clases = clases;
                     console.log(clases);

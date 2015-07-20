@@ -1,7 +1,6 @@
 'use strict';
 //Controlador del dialogo nueva asistencia /
 function Dialogasistencia($scope, $mdDialog) {
-    'use strict';
     $scope.save = function() {
        $mdDialog.hide(true);
     };
@@ -14,14 +13,21 @@ function Dialogasistencia($scope, $mdDialog) {
       $mdDialog.cancel();
     };
 }
+//Controlador del perfil del estudiante
+function DialogStudentProfile($scope, $mdDialog, $stateParams, estudiante) {
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+    $scope.estudiante = estudiante;
+}
 
 angular.module('Dirapp')
   .controller('EstudiantesCtrl', function ($scope, $mdSidenav, $mdDialog, $mdToast, $stateParams, Docente, $state) {
-    'use strict';
     // redireccion
     $scope.$on('$viewContentLoaded',
-        function(event){
-            if ($state.current.url == '/Estudiantes') {
+        function(){
+            if ($state.current.url === '/Estudiantes') {
                 $state.go('Docente.Estudiantes.lista');
             }
         }
@@ -158,7 +164,7 @@ angular.module('Dirapp')
 
 }])
 
-.controller('CalificacionCtrl', ['$scope', '$stateParams', '$state', 'Docente', '$location', function($scope, $stateParams, $state, Docente, $location){
+.controller('CalificacionCtrl', ['$scope', '$stateParams', '$state', 'Docente', function($scope, $stateParams, $state, Docente){
     var idClase = $stateParams.idclase;
     $scope.logroSW = 1;
     $scope.porcentaje = 0;
@@ -182,7 +188,7 @@ angular.module('Dirapp')
                       $scope.notas = notas;
                       Docente.calificaciones.query({idclase: idClase, idindicador: idindicador}, function(evaluaciones){
                           $scope.evaluaciones = evaluaciones;
-                          $scope.porcentaje = _.reduce(evaluaciones, function(memo, obj){ return memo + obj.ponderacion}, 0);
+                          $scope.porcentaje = _.reduce(evaluaciones, function(memo, obj){ return memo + obj.ponderacion;}, 0);
                       });
                   }
               });
@@ -244,13 +250,3 @@ angular.module('Dirapp')
     };
 
 }]);
-
-//Controlador del perfil del estudiante
-function DialogStudentProfile($scope, $mdDialog, $stateParams, estudiante, Coordinador) {
-
-    $scope.cancel = function() {
-      $mdDialog.cancel();
-    };
-
-    $scope.estudiante = estudiante;
-}

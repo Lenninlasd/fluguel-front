@@ -21,6 +21,8 @@
   "globals": {
     "angular": false,
      "$": false,
-     "_": false
+     "_": false,
+     "Chartist": false,
+     "moment": false
   }
 }

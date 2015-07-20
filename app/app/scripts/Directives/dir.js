@@ -4,10 +4,7 @@ angular.module('Dirapp',[])
 .directive('aCordeon', function (){
 	return{
 		restrict: 'E',
-		templateUrl:'views/contenido/acordeon.html',
-		controller:['$scope', function ($scope){
-		}]
-
+		templateUrl:'views/contenido/acordeon.html'
 	};
 
 })
@@ -21,18 +18,14 @@ angular.module('Dirapp',[])
 			{Nombre:'Estudiantes',classe:'',icon:'fa fa-users fa-lg fa-fw',state:'Docente.Estudiantes'},
 			//{Nombre:'Trabajos',classe:'',icon:'fa fa-tasks fa-lg fa-fw',state:'Docente.Trabajos'}
 			];
-		}],
-		link: function link(scope, element, attrs){
-			//console.log(location)
-		}
-
+		}]
 	};
 
 })
 
 .directive('iTable', function(){
 
-	function link(scope, element, attrs){
+	function link(scope){
 
 		scope.ObjtoArray = function(array){
          return _.map(array, function(obj){
@@ -48,7 +41,7 @@ angular.module('Dirapp',[])
 		scope.reverse = false;
 
 		scope.tableOrder = function(val){
-			if (scope.predicate == val.toString()) {
+			if (scope.predicate === val.toString()) {
 				scope.reverse = !scope.reverse;
 			}else{
 				scope.reverse = false;
@@ -72,7 +65,7 @@ angular.module('Dirapp',[])
   return {
     restrict: 'A',
     link: function(scope, element, attrs){
-      if (attrs.toggle=='tooltip'){
+      if (attrs.toggle === 'tooltip'){
         $(element).tooltip();
       }
       // if (attrs.toggle=='popover'){

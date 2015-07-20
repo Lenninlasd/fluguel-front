@@ -1,54 +1,6 @@
 'use strict';
-angular.module('Dirapp')
-.controller('LandingCtrl', ['$scope', '$mdDialog', '$location', '$cookies', 'Usuario', function($scope, $mdDialog, $location, $cookies, Usuario) {
-    'use strict';
-
-    Usuario.login.get(function (data) {
-        console.log(data);
-        var hola = $cookies.get('session');
-        console.log(hola);
-        if (data.login === true) {
-            if (data.userData.rol === 'admin') {
-                $location.path('/admin');
-            }else if(data.userData.rol === 'profesor') {
-                $location.path('/Docente');
-            }
-        }
-    },function(data){
-        console.log(data);
-    });
-
-    $scope.showAdvanced = function(ev) {
-            $mdDialog.show({
-                controller: LoginCtrl,
-                templateUrl: 'views/landing/loginForm.html',
-                targetEvent: ev,
-            })
-            .then(function(answer) {
-                //$scope.alert = 'You said the information was '' + answer + ''.';
-                console.log(answer);
-            }, function() {
-                //$scope.alert = 'You cancelled the dialog.';
-                console.log('You cancelled the dialog.');
-            });
-    };
-
-
-}])
-.controller('logoutCtrl', ['$scope', '$location', '$cookies', 'Usuario', function ($scope, $location, $cookies, Usuario) {
-    'use strict';
-    $scope.logout = function () {
-        Usuario.logout.save(function(data){
-            if (!data.login) {
-                $cookies.remove('session');
-                $location.path('/login');
-            }
-        });
-    };
-}]);
 
 function LoginCtrl($scope, Usuario, $location, $mdDialog, $cookies) {
-    'use strict';
     $scope.form = {};
     $scope.userAlert = false;
     $scope.passAlert = false;
@@ -92,3 +44,49 @@ function LoginCtrl($scope, Usuario, $location, $mdDialog, $cookies) {
         $mdDialog.hide(answer);
     };
 }
+
+angular.module('Dirapp')
+.controller('LandingCtrl', ['$scope', '$mdDialog', '$location', '$cookies', 'Usuario', function($scope, $mdDialog, $location, $cookies, Usuario) {
+
+    Usuario.login.get(function (data) {
+        console.log(data);
+        var hola = $cookies.get('session');
+        console.log(hola);
+        if (data.login === true) {
+            if (data.userData.rol === 'admin') {
+                $location.path('/admin');
+            }else if(data.userData.rol === 'profesor') {
+                $location.path('/Docente');
+            }
+        }
+    },function(data){
+        console.log(data);
+    });
+
+    $scope.showAdvanced = function(ev) {
+            $mdDialog.show({
+                controller: LoginCtrl,
+                templateUrl: 'views/landing/loginForm.html',
+                targetEvent: ev,
+            })
+            .then(function(answer) {
+                //$scope.alert = 'You said the information was '' + answer + ''.';
+                console.log(answer);
+            }, function() {
+                //$scope.alert = 'You cancelled the dialog.';
+                console.log('You cancelled the dialog.');
+            });
+    };
+
+
+}])
+.controller('logoutCtrl', ['$scope', '$location', '$cookies', 'Usuario', function ($scope, $location, $cookies, Usuario) {
+    $scope.logout = function () {
+        Usuario.logout.save(function(data){
+            if (!data.login) {
+                $cookies.remove('session');
+                $location.path('/login');
+            }
+        });
+    };
+}]);
