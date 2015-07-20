@@ -1,50 +1,50 @@
-<div>
-  <md-card layout-padding>
-    <div layout-margin layout="row">
-        <div class="md-body-2" flex>
-            <span class="color-block language-color" style="background-color:#00ABDE;"></span>
-            Progreso completado. <strong class="text-muted">40.0%</strong>
-        </div>
-        <div class="md-body-2" flex>
-          <span class="color-block language-color" style="background-color:#CBCBCB;"></span>
-            Progreso tentativo. <strong class="text-muted">60.0%</strong>
-        </div>
-    </div>
+<div layout="row" layout-align="center center" ng-hide="loadingContenido || hayContenido">
 
-    <div class="progress-min progress-info-cool">
-        <div class="progress-bar progress-bar-info-cool" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;box-shadow: none;">
-            <span class="sr-only">40% Complete (success)</span>
-        </div>
-    </div>
-    <div class="progress-min progress-dart">
-        <div class="progress-bar progress-bar-dart" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;box-shadow: none;">
-          <span class="sr-only">60% Complete (warning)</span>
-        </div>
-    </div>
-  </md-card>
+    <md-card>
+        <md-card-content class="text-center">
+            <h1 class="text-muted">Aún no se han agregado logros en esta clase</h1>
+            <h3 class="text-muted">Haz clic en el botón <i class="fa fa-plus-circle" style="color:rgb(63,81,181)"></i> para comenzar.</h3>
+        </md-card-content>
+    </md-card>
 </div>
 
-<div class="panel-group" layout-margin role="tablist" aria-multiselectable="true">
+<div layout="row" layout-align="center center" ng-show="loadingContenido">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<div class="panel-group" layout-margin id="" role="tablist" aria-multiselectable="true" ng-hide="loadingContenido || !hayContenido">
 
       <!--  aqui comienza el repeater para los cada periodo en el scope periodos -->
     <div class="panel panel-default" ng-repeat="periodo in Periodos">
 
-          <div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-target="#{{periodo.targetid}}" aria-expanded="{{periodo.expanded}}" aria-controls="{{periodo.targetid}}" data-parent="#accordion" style="cursor: pointer;">
+        <div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-target="#{{periodo.targetid}}" aria-expanded="{{periodo.expanded}}" aria-controls="{{periodo.targetid}}" data-parent="#accordion"style="cursor: pointer;" >
+            <h4 class="panel-title">
+               <span class="titulo">{{periodo.periodo}} <small class="md-caption">{{""}}</small></span>
+            </h4>
+        </div>
 
-              <h4 class="panel-title">
-                 <span class="titulo">{{periodo.periodo}} <small class="md-caption">{{"4 logros"}}</small></span>
+        <div id="{{periodo.targetid}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+                <!-- aqui se filtra cada logro de acuerdo con su periodo que es una propiedad del scope Logros y periodo.id que es una propidad del escope Periodos -->
+                <div ng-repeat="logro in Logros | filter:{periodo:periodo.id} | orderBy:'fecha_vencimiento'" style="padding: 1px 0;">
+                <md-card>
+                    <well-logros></well-logros>
 
-              </h4>
-
-          </div>
-
-          <div id="{{periodo.targetid}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
-                  <!-- aqui se filtra cada logro de acuerdo con su periodo que es una propiedad del scope Logros y periodo.id que es una propidad del escope Periodos -->
-                  <div ng-repeat="logro in Logros | filter:{periodo:periodo.id} | orderBy:'fecha_vencimiento'" style="padding: 1px 0;">
-                      <md-card>
-                          <well-logros></well-logros>
-
+                    <div class="collapse" id="{{logro.id_indicador}}">
+                      <div class="progress-min progress-info-cool">
+                          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{progreso[logro.id_indicador]}}%">
+                              <span class="sr-only">{{progreso[logro.id_indicador]}}% Completado</span>
+                          </div>
+                      </div>
+                        <div layout-padding>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAddEvaluaciones" ng-click="showLogroFromCollapse(logro)">
+                                <span class="visible-lg visible-md visible-sm">Agregar Evaluacion</span>
+                                <span class="visible-xs">+ Evaluacion</span>
+                            </button>
+                        </div>
+                        <div layout-padding>
+                            <tabla-evaluaciones></tabla-evaluaciones>
+                        </div>
 
                               <div class="collapse" id="{{logro.id_indicador}}">
                                 <div class="progress-min progress-success">
@@ -68,12 +68,12 @@
               </div>
           </div>
     </div>
-      <span data-toggle="modal" data-target="#modalNewLogro">
-          <md-button class="pluss md-primary md-fab" title="Nuevo Logro" data-toggle="tooltip" data-placement="top" aria-label="Nuevo Logro" ng-click="launchPostModal()">
-              <i class="fa fa-plus fa-lg" ></i>
-          </md-button>
-      </span>
 </div>
+    <span data-toggle="modal" data-target="#modalNewLogro">
+        <md-button class="pluss md-primary md-fab" title="Nuevo Logro" data-toggle="tooltip" data-placement="top" aria-label="Nuevo Logro" ng-click="launchPostModal()">
+            <i class="fa fa-plus fa-lg" ></i>
+        </md-button>
+    </span>
 
 <!-- Modales de Contenido-->
 <modal-new-logro></modal-new-logro>

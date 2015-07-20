@@ -8,9 +8,9 @@ angular.module('Dirapp')
         var hola = $cookies.get('session');
         console.log(hola);
         if (data.login === true) {
-            if (data.userData.rol == 'admin') {
+            if (data.userData.rol === 'admin') {
                 $location.path('/admin');
-            }else if(data.userData.rol == 'profesor') {
+            }else if(data.userData.rol === 'profesor') {
                 $location.path('/Docente');
             }
         }
@@ -36,6 +36,7 @@ angular.module('Dirapp')
 
 }])
 .controller('logoutCtrl', ['$scope', '$location', '$cookies', 'Usuario', function ($scope, $location, $cookies, Usuario) {
+    'use strict';
     $scope.logout = function () {
         Usuario.logout.save(function(data){
             if (!data.login) {
@@ -47,35 +48,36 @@ angular.module('Dirapp')
 }]);
 
 function LoginCtrl($scope, Usuario, $location, $mdDialog, $cookies) {
+    'use strict';
     $scope.form = {};
     $scope.userAlert = false;
     $scope.passAlert = false;
+    $scope.loading = false;
 
     $scope.setLoginForm = function () {
         $scope.userAlert = false;
         $scope.passAlert = false;
+        $scope.loading = true;
         //Enviar a API
         // Validar el tipo de usuario (Docente, admin, etc)
         Usuario.login.save($scope.form, function(data){
-            console.log(data);
+            $scope.loading = false;
             $cookies.put('session', data.id_session);
             //res.cookie('session', id_session); // problema con cookies solucionar con angular
             $mdDialog.hide();
             if (data.login && data.userData) {
-                if (data.userData.rol == 'admin') {
+                if (data.userData.rol === 'admin') {
                     $location.path('/admin');
-                }else if (data.userData.rol == 'profesor') {
+                }else if (data.userData.rol === 'profesor') {
                     $location.path('/Docente');
                 }
             }
         }, function (err) {
-          console.log(err);
+            $scope.loading = false;
             if (err.data.noUsuario) {
-              console.log('El usuario no existe');
               $scope.userAlert = true;
             }else if (err.data.invalid_password) {
               $scope.passAlert = true;
-              console.log(err.data.invalid_password);
             }
         });
     };

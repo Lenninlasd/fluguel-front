@@ -28,7 +28,7 @@
 
           <div layout="row" flex>
 
-             <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" >
+             <md-sidenav md-swipe-left="toggleSidenav('left')" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" style="background:rgb(20, 76, 135);">
                 <md-toolbar hide-gt-sm md-theme="top">
                     <div class="md-toolbar-tools" ng-click = "close()">
                         <a  class="navbar-brand" href="#/Docente" style="color:#144c87; font-size:1.6em; margin-left: 50px">
@@ -36,15 +36,17 @@
                         </a>
                     </div>
                 </md-toolbar>
-                <md-content  class="md-padding" layout="column">    <!-- aca de deine el parametro en la url con cada tab-->
-                    <md-button ui-sref-active="active" flex ng-click = "close()" ng-repeat="clase in clases" class="md-raised md-primary" ng-href="{{routeChangeClass(clase.id_clase)}}">
-                        <strong>{{clase.nombre_curso}}{{clase.indice}}</strong><a ui-sref="Docente({idclase:clase.id_clase})"></a>
-                        <small>{{clase.materia}}</small>
-                    </md-button>
-                </md-content>
+                <ul class="menu-list" style="margin-top:20px">
+                    <li><md-button ng-repeat="clase in clases" ui-sref-active="active" ng-href="{{routeChangeClass(clase.id_clase)}}" class="a-menu">
+                            <strong>{{clase.nombre_curso}}{{clase.indice}}</strong>
+                            <small style="font-size:0.7em"> {{clase.materia}}</small>
+                            <a style="padding:0" ui-sref="Docente({idclase:clase.id_clase})"></a>
+                        </md-button>
+                    </li>
+                </ul>
             </md-sidenav>
 
-            <md-content flex class="board">
+            <md-content flex class="board" md-swipe-right="toggleSidenav('left')">
             	  <div  ui-view class="board"  layout="column"></div>
             </md-content>
         </div>

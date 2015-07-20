@@ -206,3 +206,16 @@ ul.menu-list li a {
 .md-whiteframe-z2-custom{
 	box-shadow: 0 2px 4px -1px rgba(0,0,0,.14),0 4px 5px 0 rgba(0,0,0,.098),0 10px 10px 0 rgba(0, 0, 0, 0.83);
 }
+
+button.customLink {
+		 color: #337ab7;
+     background:none!important;
+     border:none;
+     padding:0!important;
+     font: inherit;
+     /*border is optional*/
+     /*cursor: pointer;*/
+}
+button.customLink:hover {
+  color: #23527c;
+}

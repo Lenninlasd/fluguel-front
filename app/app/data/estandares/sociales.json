@@ -1,0 +1,205 @@
+[
+    {
+        "area": "Ciencias Sociales",
+        "grados": [
+            1,
+            2,
+            3
+        ],
+        "mision": [
+            "Me reconozco como ser social e histórico, miembro de un país con diversas etnias y culturas, con un legado que genera identidad nacional.",
+            "Reconozco la interacción entre el ser humano y el paisaje en diferentes contextos e identifi co las acciones económicas y las consecuencias que resultan de esta relación.",
+            "Me identifico como un ser humano único, miembro de diversas organizaciones sociales y políticas necesarias para el bienestar y el desarrollo personal y comunitario;reconozco que las normas son acuerdos básicos que buscan la convivencia pacífica en la diversidad."
+        ],
+        "grupoEstandares": [
+            {
+                "nombre": "me aproximo al conocimiento como científico(a) social",
+                "lista": [
+                    {
+                        "estandarGeneral": "",
+                        "estandaresEspecificos": [
+                            "Hago preguntas sobre mí y sobre las organizaciones sociales a las que pertenezco (familia, curso, colegio, barrio…).",
+                            "Reconozco diversos aspectos míos y de las organizaciones sociales a las que pertenezco, así como los cambios que han ocurrido a través del tiempo.",
+                            "Uso diversas fuentes para obtener la información que necesito (entrevistas a mis familiares y profesores, fotografías, textos escolares y otros).",
+                            "Organizo la información, utilizando cuadros, gráficas…",
+                            "Establezco relaciones entre la información obtenida en diferentes fuentes y propongo respuestas a mis preguntas.",
+                            "Utilizo diversas formas de expresión (oral, escrita, gráfica) para comunicar los resultados de mi investigación.",
+                            "Doy crédito a las diferentes fuentes de la información obtenida (cuento a quién entrevisté, qué libros miré, qué fotos comparé…)."
+                        ]
+                    }
+                ]
+            },
+            {
+                "nombre": "manejo conocimientos propios de las ciencias sociales",
+                "lista": [
+                    {
+                        "estandarGeneral": "Relaciones con la historia y las culturas",
+                        "estandaresEspecificos": [
+                            "Identifico algunas características físicas, sociales, culturales y emocionales que hacen de mí un ser único.",
+                            "Identifico y describo algunas características socioculturales de comunidades a las que pertenezco y de otras diferentes a las mías.",
+                            "Identifico y describo cambios y aspectos que se mantienen en mí y en las organizaciones de mi entorno.",
+                            "Reconozco en mi entorno cercano las huellas que dejaron las comunidades que lo ocuparon en el pasado (monumentos, museos, sitios de conservación histórica…).",
+                            "Identifico y describo algunos elementos que permiten reconocerme como miembro de un grupo regional y de una nación (territorio, lenguas, costumbres, símbolos patrios…).",
+                            "Reconozco características básicas de la diversidad étnica y cultural en Colombia.",
+                            "Identifico los aportes culturales que mi comunidad y otras diferentes a la mía han hecho a lo que somos hoy.",
+                            "Reconozco conflictos que se generan cuando no se respetan mis rasgos particulares o los de otras personas."
+                            
+                        ]
+                    },
+                    {
+                        "estandarGeneral": "Relaciones espaciales y ambientales",
+                        "estandaresEspecificos": [
+                            "Me ubico en el entorno físico y de representación (en mapas y planos) utilizando referentes espaciales como arriba, abajo, dentro, fuera, derecha, izquierda.",
+                            "Establezco relaciones entre los espacios físicos que ocupo (salón de clase, colegio, municipio…) y sus representaciones (mapas, planos, maquetas...).",
+                            "Reconozco diversas formas de representación de la Tierra.",
+                            "Reconozco y describo las características físicas de las principales formas del paisaje.",
+                            "Identifico y describo las características de un paisaje natural y de un paisaje cultural.",
+                            "Establezco relaciones entre los accidentes geográficos y su representación gráfi ca.",
+                            "Establezco relaciones entre paisajes naturales y paisajes culturales.",
+                            "Identifico formas de medir el tiempo (horas, días, años...) y las relaciono con las actividades de las personas.",
+                            "Comparo actividades económicas que se llevan a cabo en diferentes entornos.",
+                            "Establezco relaciones entre el clima y las actividades económicas de las personas.",
+                            "Reconozco, describo y comparo las actividades económicas de algunas personas en mi entorno y el efecto de su trabajo en la comunidad.",
+                            "Identifico los principales recursos naturales (renovables y no renovables).",
+                            "Reconozco factores de tipo económico que generan bienestar o conflicto en la vida social.",
+                            "Reconozco que los recursos naturales son finitos y exigen un uso responsable."
+                            
+                        ]
+                    },
+                    {
+                        "estandarGeneral": "Relaciones éticopolíticas",
+                        "estandaresEspecificos": [
+                            "Identifico y describo características y funciones básicas de organizaciones sociales y políticas de mi entorno (familia, colegio, barrio, vereda, corregimiento, resguardo, territorios afrocolombianos, municipio…).",
+                            "Identifico situaciones cotidianas que indican cumplimiento o incumplimiento en las funciones de algunas organizaciones sociales y políticas de mi entorno.",
+                            "Comparo las formas de organización propias de los grupos pequeños (familia, salón de clase, colegio…) con las de los grupos más grandes (resguardo, territorios afrocolombianos, municipio…).",
+                            "Identifico factores que generan cooperación y conflicto en las organizaciones sociales y políticas de mi entorno y explico por qué lo hacen.",
+                            "Identifico mis derechos y deberes y los de otras personas en las comunidades a las que pertenezco.",
+                            "Identifico normas que rigen algunas comunidades a las que pertenezco y explico su utilidad.",
+                            "Reconozco algunas normas que han sido construidas socialmente y distingo aquellas en cuya construcción y modificación puedo participar (normas del hogar, manual de convivencia escolar, Código de Tránsito…)."
+                            
+                        ]
+                    }
+                ]
+            },
+            {
+                "nombre": "desarrollo compromisos personales y sociales",
+                "lista": [
+                    {
+                        "estandarGeneral": "",
+                        "estandaresEspecificos": [
+                            "Reconozco y respeto diferentes puntos de vista.",
+                            "Comparo mis aportes con los de mis compañeros y compañeras e incorporo en mis conocimientos y juicios elementos valiosos aportados por otros.",
+                            "Respeto mis rasgos individuales y los de otras personas (género, etnia, religión…).",
+                            "Reconozco situaciones de discriminación y abuso por irrespeto a los rasgos individuales de las personas (religión, etnia, género, discapacidad…) y propongo formas de cambiarlas.",
+                            "Reconozco la diversidad étnica y cultural de mi comunidad, mi ciudad…",
+                            "Participo en actividades que expresan valores culturales de mi comunidad y de otras diferentes a la mía.",
+                            "Participo en la construcción de normas para la convivencia en los grupos sociales y políticos a los que pertenezco (familia, colegio, barrio...).",
+                            "Cuido mi cuerpo y mis relaciones con los demás.",
+                            "Cuido el entorno que me rodea y manejo responsablemente las basuras.",
+                            "Uso responsablemente los recursos (papel, agua, alimentos…).",
+                            "Valoro aspectos de las organizaciones sociales y políticas de mi entorno que promueven el desarrollo individual y comunitario."
+                            
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "area": "Ciencias Sociales",
+        "grados": [
+            4,
+            5
+        ],
+        "mision": [
+            "Reconozco que tanto los individuos como las organizaciones sociales se transforman con el tiempo, construyen un legado y dejan huellas que permanecen en las sociedades actuales.",
+            "Reconozco algunas características físicas y culturales de mi entorno, su interacción y las consecuencias sociales, políticas y económicas que resultan de ellas.",
+            "Reconozco la utilidad de las organizaciones político-administrativas y sus cambios a través del tiempo como resultado de acuerdos y conflictos."
+            
+        ],
+        "grupoEstandares": [
+            {
+                "nombre": "me aproximo al conocimiento como científico(a) social",
+                "lista": [
+                    {
+                        "estandarGeneral": "",
+                        "estandaresEspecificos": [
+                            "Hago preguntas acerca de los fenómenos políticos, económicos sociales y culturales estudiados (Prehistoria, pueblos prehispánicos colombianos…).",
+                            "Planteo conjeturas que respondan provisionalmente a estas preguntas.",
+                            "Utilizo diferentes tipos de fuentes para obtener la información que necesito (textos escolares, cuentos y relatos, entrevistas a profesores y familiares, dibujos, fotografías y recursos virtuales…).",
+                            "Organizo la información obtenida utilizando cuadros, gráficas… y la archivo en orden.",
+                            "Establezco relaciones entre información localizada en diferentes fuentes y propongo respuestas a las preguntas que planteo.",
+                            "Reconozco que los fenómenos estudiados tienen diversos aspectos que deben ser tenidos en cuenta (cambios a lo largo del tiempo, ubicación geográfica, aspectos económicos…).",
+                            "Reviso mis conjeturas iniciales.",
+                            "Utilizo diversas formas de expresión (exposición oral, dibujos, carteleras, textos cortos…) para comunicar los resultados de mi investigación.",
+                            "Doy crédito a las diferentes fuentes de la información obtenida (cuento a mis compañeros a quién entrevisté, qué libros leí, qué dibujos comparé, cito información de fuentes escritas…)."
+                            
+                        ]
+                    },
+                    {
+                        "estandarGeneral": "Relaciones con la historia y las culturas",
+                        "estandaresEspecificos": [
+                            "Identifico y explico fenómenos sociales y económicos que permitieron el paso del nomadismo al sedentarismo (agricultura, división del trabajo...).",
+                            "Identifico y describo características sociales, políticas, económicas y culturales de las primeras organizaciones humanas (banda, clan, tribu...).",
+                            "Comparo características de las primeras organizaciones humanas con las de las organizaciones de mi entorno.",
+                            "Identifico algunas condiciones políticas, sociales, económicas y tecnológicas que permitieron las exploraciones de la antigüedad y el medioevo.",
+                            "Establezco algunas relaciones entre exploraciones de la antigüedad y el medioevo y exploraciones de la actualidad.",
+                            "Identifico, describo y comparo algunas características sociales, políticas, económicas y culturales de las comunidades prehispánicas de Colombia y América.",
+                            "Relaciono estas características con las condiciones del entorno particular de cada cultura.",
+                            "Comparo características de los grupos prehispánicos con las características sociales, políticas, económicas y culturales actuales.",
+                            "Identifico los propósitos de las organizaciones coloniales españolas y describo aspectos básicos de su funcionamiento.",
+                            "Identifico y comparo algunas causas que dieron lugar a los diferentes períodos históricos en Colombia (Descubrimiento, Colonia, Independencia...)."
+                            
+                        ]
+                    },
+                    {
+                        "estandarGeneral": "Relaciones espaciales y ambientales",
+                        "estandaresEspecificos": [
+                            "Me ubico en el entorno físico utilizando referentes espaciales (izquierda, derecha, puntos cardinales).",
+                            "Utilizo coordenadas, escalas y convenciones para ubicar los fenómenos históricos y culturales en mapas y planos de representación.",
+                            "Identifico y describo características de las diferentes regiones naturales del mundo (desiertos, polos, selva húmeda tropical, océanos…).",
+                            "Identifico y describo algunas de las características humanas (sociales, culturales…) de las diferentes regiones naturales del mundo.",
+                            "Clasifico y describo diferentes actividades económicas (producción, distribución, consumo…) en diferentes sectores económicos (agrícola, ganadero, minero, industrial...) y reconozco su impacto en las comunidades.",
+                            "Reconozco los diferentes usos que se le dan a la tierra y a los recursos naturales en mi entorno y en otros (parques naturales, ecoturismo, ganadería, agricultura…).",
+                            "Identifico organizaciones que resuelven las necesidades básicas (salud, educación, vivienda, servicios públicos, vías de comunicación…) en mi comunidad, en otras y en diferentes épocas y culturas; identifico su impacto sobre el desarrollo."
+                            
+                        ]
+                    },
+                    {
+                        "estandarGeneral": "Relaciones éticopolíticas",
+                        "estandaresEspecificos": [
+                            "Identifico y describo algunas características de las organizaciones político-administrativas colombianas en diferentes épocas (Real Audiencia, Congreso, Concejo Municipal…).",
+                            "Comparo características del sistema político-administrativo de Colombia –ramas del poder público– en las diferentes épocas.",
+                            "Explico semejanzas y diferencias entre organizaciones político-administrativas.",
+                            "Explico el impacto de algunos hechos históricos en la formación limítrofe del territorio colombiano (Virreinato de la Nueva Granada, Gran Colombia, separación de Panamá…).",
+                            "Reconozco las responsabilidades que tienen las personas elegidas por voto popular y algunas características de sus cargos (personeros estudiantiles, concejales, congresistas, presidente…)",
+                            "Conozco los Derechos de los Niños e identifico algunas instituciones locales, nacionales e internacionales que velan por su cumplimiento (personería estudiantil, comisaría de familia, Unicef…)."
+                            
+                        ]
+                    }
+                ]
+            },
+            {
+                "nombre": "desarrollo compromisos personales y sociales",
+                "lista": [
+                    {
+                        "estandarGeneral": "",
+                        "estandaresEspecificos": [
+                            "Reconozco y respeto diferentes puntos de vista acerca de un fenómeno social.",
+                            "Participo en debates y discusiones: asumo una posición, la confronto con la de otros, la defiendo y soy capaz de modificar mis posturas si lo considero pertinente.",
+                            "Respeto mis rasgos individuales y culturales y los de otras personas (género, etnia…).",
+                            "Asumo una posición crítica frente a situaciones de discriminación y abuso por irrespeto a los rasgos individuales de las personas (etnia, género…) y propongo formas de cambiarlas.",
+                            "Reconozco la importancia de los aportes de algunos legados culturales, científicos, tecnológicos, artísticos, religiosos… en diversas épocas y entornos.",
+                            "Participo en la construcción de normas para la convivencia en los grupos a los que pertenezco (familia, colegio, barrio...).",
+                            "Cuido mi cuerpo y mis relaciones con las demás personas.",
+                            "Cuido el entorno que me rodea y manejo responsablemente las basuras.",
+                            "Uso responsablemente los recursos (papel, agua, alimento, energía…).",
+                            "Defiendo mis derechos y los de otras personas y contribuyo a denunciar ante las autoridades competentes (profesor, padres, comisaría de familia…) casos en los que son vulnerados."
+                            
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

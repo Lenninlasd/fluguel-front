@@ -130,86 +130,93 @@ angular.module('Dirapp')
 }])
 .controller('EstadisticaCtrl',['$scope', 'Analytics', function ($scope, Analytics){
     'use strict';
+    $scope.cont = 0
+    Analytics.evolInasistencia.query(function (evols) {
+        ++$scope.cont;
+        new Chartist.Line('#ct-chart1', {
+              labels: _.pluck(evols, 'fecha'),
+              series: [
+                  _.pluck(evols, 'inasistencia')
+              ]
+            }, {
+                  showArea: true,
 
-    Analytics.promedioVsMaterias.query(function (promedios) {
-        console.log(promedios);
+                  low: 0,
+                  lineSmooth: false,
+                  plugins: [
+                    Chartist.plugins.ctPointLabels({
+                      textAnchor: 'middle'
+                    })
+                  ],
+                  axisX: {
+                     showGrid: false,
+                     showLabel: false
+                  },
+                  axisY: {
+                     showGrid: false,
+                     showLabel: false
+                  },
+            });
     });
 
-    var data = {labels:[], series:[]};
-    Analytics.promedioVsGrados.query(function (grado) {
-        //var labels =
-        //var series = _.pluck(data, 'nota');
-
-        data = {
-          labels: _.pluck(grado, 'grado'),
+    Analytics.inasistenciasVsMaterias.query(function (inaMaterias) {
+        ++$scope.cont;
+        new Chartist.Bar('#ct-chart2', {
+          labels: _.pluck(inaMaterias, 'materia'),
           series: [
-            _.pluck(grado, 'nota')
+              _.pluck(inaMaterias, 'inasistencia'),
           ]
-        };
-        console.log(data);
+        });
+    });
+
+    Analytics.inasistenciasVsGrados.query(function (inaGrados) {
+        ++$scope.cont;
+        var nombreCurso = _.pluck(inaGrados, 'nombre_curso');
+        var indice = _.pluck(inaGrados, 'indice');
+        var curso = _.zip(nombreCurso, indice);
+        curso.forEach(function(element){console.log(element.join('-'))});
+
+        new Chartist.Bar('#ct-chart4', {
+          labels: _.map(curso, function(element){ return element.join(' ')}),
+          series: [
+            _.pluck(inaGrados, 'inasistencia'),
+          ]
+        });
+    });
+
+    Analytics.inasistenciasVsDiaSemana.query(function (inaDias) {
+        ++$scope.cont;
+        new Chartist.Bar('#ct-chart3', {
+          labels: _.pluck(inaDias, 'diaNombre'),
+          series: [
+              _.pluck(inaDias, 'inasistencia'),
+          ]
+        });
+    });
+
+}]).controller('EstNotasCtrl',['$scope', 'Analytics', function ($scope, Analytics){
+    $scope.loadingEstNotas = true;
+    $scope.cont = 0
+    Analytics.promedioVsMaterias.query(function (materias) {
+        ++$scope.cont;
+        new Chartist.Bar('#ct-chart2', {
+          labels: _.pluck(materias, 'materia'),
+          series: [
+            _.pluck(materias, 'nota'),
+          ]
+        });
     });
 
 
-    var options = {
-      high: 10,
-      low: 0,
-      lineSmooth: false,
-      plugins: [
-        Chartist.plugins.ctPointLabels({
-          textAnchor: 'middle'
-        })
-      ],
-      axisX: {
-         showGrid: false,
-         showLabel: true
-      },
-      axisY: {
-         showGrid: false,
-         showLabel: false
-      },
-    };
-
-    new Chartist.Line('#ct-chart1', data, options);
-
-
-    new Chartist.Bar('#ct-chart2', {
-      labels: ['Matemáticas', 'Español', 'Sociales', 'Informatica', 'Edu. Física', 'Química', 'Biología'],
-      series: [
-        [5, 4, 3, 7, 5, 10, 3],
-      ]
-    });
-
-    new Chartist.Bar('#ct-chart3', {
-      labels: ['Lunes', 'Martes', 'Miercoles', 'jueves', 'viernes'],
-      series: [
-        [5, 4, 3, 7, 5],
-      ]
-    });
-
-    new Chartist.Bar('#ct-chart4', {
-      labels: ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'],
-      series: [
-        [5, 4, 3, 7, 5],
-      ]
-    },{
-      high: 8
-    });
-
-
-}]).controller('EstNotasCtrl',['$scope', function ($scope){
-    new Chartist.Bar('#ct-chart2', {
-      labels: ['Matemáticas', 'Español', 'Sociales', 'Informatica', 'Edu. Física', 'Química', 'Biología'],
-      series: [
-        [5, 4, 3, 7, 5, 10, 3],
-      ]
-    });
-
-    new Chartist.Bar('#ct-chart4', {
-      labels: ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'],
-      series: [
-        [5, 4, 3, 7, 5],
-      ]
-    },{
-      high: 8
+    Analytics.promedioVsGrados.query(function (grados) {
+        ++$scope.cont;
+        new Chartist.Bar('#ct-chart4', {
+          labels: _.pluck(grados, 'nombre_curso'),
+          series: [
+              _.pluck(grados, 'nota'),
+          ]
+        },{
+          high: 6
+        });
     });
 }]);

@@ -1,5 +1,5 @@
-<div layout="row" layout-gt-sm="column" layout-fill layout-wrap style="z-index: 1" layout-align="center" layout-align-gt-sm="center center">
-	<md-dialog aria-label="Login" flex-sm="100" flex-md="70" flex-gt-md="50" style="overflow-y: visible;" class="modal-content">
+<div layout="row" layout-gt-sm="row" layout-fill layout-wrap style="z-index: 1" layout-align="center" layout-align-gt-sm="center center">
+	<md-dialog aria-label="Login" flex-sm="100" flex-md="70" flex-gt-md="40" style="overflow-y: visible;" class="modal-content">
 
 				<div class="modal-header">
 					<button type="button" class="close" ng-click="cancel()"><i class="fa fa-times"></i></button>
@@ -12,13 +12,14 @@
 							<form ng-submit="setLoginForm()">
 								<div class="form-group">
 									<label >Usuario</label>
-									<input type="text" required class="form-control" name="usuario" ng-model="form.usuario" placeholder="Ingrese su usuario">
+									<input type="text" required class="form-control input-lg" name="usuario" ng-model="form.usuario" placeholder="Ingrese su usuario">
 								</div>
 								<div class="form-group">
 									<label >Clave <a href="#" style="font-size: 75%;">¿Olvido su contraseña?</a></label>
-									<input type="password" required class="form-control" name="pass" ng-model="form.pass" placeholder="Ingrese su clave">
+									<input type="password" required class="form-control input-lg" name="pass" ng-model="form.pass" placeholder="Ingrese su clave">
 								</div>
-								<button type="submit" class="btn-azul btn-default form-control">Acceder</button>
+								<!-- <button ng-show="loading"  class="btn-lg btn-azul btn-default  btn-block form-control"></button> -->
+								<button  ng-disabled="loading" type="submit" class="btn btn-primary btn-lg btn-block"><span ng-hide="loading">Acceder</span> <span ng-show="loading">Accediendo...</span></button>
 							</form>
 						</div>
 
