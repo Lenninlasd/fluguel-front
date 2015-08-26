@@ -18,7 +18,7 @@
     "chartist": "~0.9.1",
     "angular-messages": "~1.4.3",
     "angular-ui-router": "~0.2.15",
-    "angular-material": "0.10.0",
+    "angular-material": "0.10.1",
     "moment": "~2.10.2",
     "chartist-plugin-pointlabels": "~0.0.3"
   },

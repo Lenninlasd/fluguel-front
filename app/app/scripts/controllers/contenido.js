@@ -1,4 +1,42 @@
 'use strict';
+
+function DialogEditLogro($scope, $mdDialog, logro, Docente, $stateParams) {
+    $scope.logro = logro;
+    var idClase = $stateParams.idclase;
+    $scope.cancel = function() {
+        $mdDialog.cancel();
+    };
+    $scope.saveLogro = function(id_indicador){
+        if (id_indicador) {
+          // PUT
+            if (_.size($scope.logro)) {
+                var getParams = {idindicador : $scope.logro.id_indicador};
+                var putlogro = _.pick($scope.logro, 'contenido', 'periodo', 'fecha_vencimiento');
+                Docente.contenido.update(getParams, putlogro, function (log) {
+                    _.delay(function(){
+                        $mdDialog.hide([id_indicador,log]);
+                    }, 500);
+                });
+            }
+        }else{
+            // POST logro
+            $scope.logro.idclase = idClase;
+            Docente.contenido.save($scope.logro, function(log){
+                var logro = {
+                    id_indicador: log.insertId,
+                    id_clase: log.data.idclase,
+                    contenido: log.data.contenido,
+                    periodo: log.data.periodo,
+                    fecha_vencimiento: log.data.fecha_vencimiento
+                };
+                _.delay(function(){
+                    $mdDialog.hide(logro);
+                }, 500);
+            });
+        }
+    };
+}
+
 angular.module('Dirapp')
   .controller('ContenidoCtrl', ['$scope', '$mdDialog', '$stateParams', '$state', 'Docente', 'Analytics', '$location', function ($scope, $mdDialog, $stateParams, $state, Docente, Analytics, $location) {
 
@@ -72,7 +110,6 @@ angular.module('Dirapp')
     };
 
     $scope.saveLogro = function(id_indicador){
-
         if (id_indicador) {
           // PUT
             if (_.size($scope.logro)) {
@@ -84,12 +121,11 @@ angular.module('Dirapp')
                     logro.periodo = log.data.periodo;
                     logro.fecha_vencimiento = log.data.fecha_vencimiento;
                     _.delay(function(){
-                        $('#modalNewLogro').modal('hide');
+                        $mdDialog.hide();
                     }, 500);
                 });
             }
         }else{
-
             // POST logro
             $scope.logro.idclase = idClase;
             Docente.contenido.save($scope.logro, function(log){
@@ -102,21 +138,47 @@ angular.module('Dirapp')
                 };
                 $scope.Logros.push(logro);
                 _.delay(function(){
-                    $('#modalNewLogro').modal('hide');
+                    $mdDialog.hide();
                 }, 500);
             });
         }
     };
 
-    $scope.launchPostModal = function(){
+    $scope.launchPostModal = function(ev){
         $scope.logro = {};
+        $mdDialog.show({
+            controller: DialogEditLogro,
+            templateUrl: 'views/contenido/modals/dialogEditAchievement.html',
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            locals: { logro: $scope.logro }
+        })
+        .then(function(logro){
+            $scope.Logros.push(logro);
+        });
     };
 
-    $scope.launchEditModal = function(id_indicador){
+
+    //Modal para perfil del estudiante
+    $scope.editLogroModal = function (ev, id_indicador) {
         $scope.logro = _.clone(_.findWhere($scope.Logros, {id_indicador: id_indicador}));
         if ($scope.logro.fecha_vencimiento) {
             $scope.logro.fecha_vencimiento = $scope.logro.fecha_vencimiento.substring(0, 10);
         }
+        $mdDialog.show({
+            controller: DialogEditLogro,
+            templateUrl: 'views/contenido/modals/dialogEditAchievement.html',
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            locals: { logro: $scope.logro }
+        })
+        .then(function(response){
+            var log = response[1]
+            var logro = _.findWhere($scope.Logros, {id_indicador: response[0]});
+            logro.contenido = log.data.contenido;
+            logro.periodo = log.data.periodo;
+            logro.fecha_vencimiento = log.data.fecha_vencimiento;
+        });
     };
 
     $scope.showLogroFromCollapse = function(logro){
