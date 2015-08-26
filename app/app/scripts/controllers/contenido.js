@@ -109,41 +109,6 @@ angular.module('Dirapp')
        return porcentaje;
     };
 
-    $scope.saveLogro = function(id_indicador){
-        if (id_indicador) {
-          // PUT
-            if (_.size($scope.logro)) {
-                var getParams = {idindicador : $scope.logro.id_indicador};
-                var putlogro = _.pick($scope.logro, 'contenido', 'periodo', 'fecha_vencimiento');
-                Docente.contenido.update(getParams, putlogro, function (log) {
-                    var logro = _.findWhere($scope.Logros, {id_indicador: id_indicador});
-                    logro.contenido = log.data.contenido;
-                    logro.periodo = log.data.periodo;
-                    logro.fecha_vencimiento = log.data.fecha_vencimiento;
-                    _.delay(function(){
-                        $mdDialog.hide();
-                    }, 500);
-                });
-            }
-        }else{
-            // POST logro
-            $scope.logro.idclase = idClase;
-            Docente.contenido.save($scope.logro, function(log){
-                var logro = {
-                    id_indicador: log.insertId,
-                    id_clase: log.data.idclase,
-                    contenido: log.data.contenido,
-                    periodo: log.data.periodo,
-                    fecha_vencimiento: log.data.fecha_vencimiento
-                };
-                $scope.Logros.push(logro);
-                _.delay(function(){
-                    $mdDialog.hide();
-                }, 500);
-            });
-        }
-    };
-
     $scope.launchPostModal = function(ev){
         $scope.logro = {};
         $mdDialog.show({
@@ -155,6 +120,7 @@ angular.module('Dirapp')
         })
         .then(function(logro){
             $scope.Logros.push(logro);
+            $scope.hayContenido = _.size($scope.Logros) ? true : false;
         });
     };
 
