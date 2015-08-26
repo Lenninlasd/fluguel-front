@@ -2,20 +2,22 @@
     <div layout="row"  layout-wrap layout-fill>
         <div flex="35" flex-md="100" flex-sm="100">
             <md-card>
-                <div layout="column"  md-theme="top">
-                    <div layout="row" layout-align="space-around center" layout-margin layout-fill>
+                <div layout="column"  >
+                    <div layout="row" layout-align="space-around center" layout-margin>
                         <div flex="10"><span class="list-order-color">1</span></div>
-                        <md-select flex="85" class="md-whiteframe-z1 select-chip" placeholder="Escoger periodo" ng-model="periodo" ng-change="getcontenido(periodo)">
-                            <md-option value="1">Primer periodo</md-option>
-                            <md-option value="2">Segundo periodo</md-option>
-                            <md-option value="3">Tercer periodo</md-option>
-                            <md-option value="4">Cuarto periodo</md-option>
-                        </md-select>
+                        <md-input-container flex="80">
+                            <md-select  placeholder="Escoger periodo" ng-model="periodo" ng-change="getcontenido(periodo)">
+                                <md-option value="1">Primer periodo</md-option>
+                                <md-option value="2">Segundo periodo</md-option>
+                                <md-option value="3">Tercer periodo</md-option>
+                                <md-option value="4">Cuarto periodo</md-option>
+                            </md-select>
+                        </md-input-container>
                     </div>
-                    <div layout="row" layout-align="space-around center" layout-margin layout-fill>
+                    <div layout="row" layout-align="space-around center" layout-margin>
                         <div flex="10"><span class="list-order-color">2</span></div>
 
-                        <md-select ng-disabled="logroSW" flex="85" class="md-whiteframe-z1 select-chip" placeholder="Escoger indicador" ng-model="logro" ng-change="getCalificaciones(logro)">
+                        <md-select ng-disabled="logroSW" flex="80" placeholder="Escoger indicador" ng-model="logro" ng-change="getCalificaciones(logro)">
                             <md-option ng-repeat="logro in logros | orderBy:'fecha_vencimiento'" ng-value="logro.id_indicador">{{logro.contenido}}</md-option>
                         </md-select>
                     </div>
