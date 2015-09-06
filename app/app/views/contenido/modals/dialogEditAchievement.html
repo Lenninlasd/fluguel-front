@@ -1,0 +1,37 @@
+<!-- Modal para Crear Un nuevo Logro-->
+<md-dialog aria-label="nuevo logro">
+
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="cancel()"><span aria-hidden="true"><i class="fa fa-times fa-lg"></i></span>
+                    </button>
+                    <h4 class="modal-title text-center" id="myModalLabel">
+                        Nuevo Logro
+                    </h4>
+                </div>
+
+                <div class="modal-body">
+                    <form ng-submit="saveLogro(logro.id_indicador)" layout="row" layout-margin layout-wrap id="savelogros">
+                        <md-input-container flex="100">
+                            <label>Contenido del logro</label>
+                            <textarea required class="input-lg" name="" id="" rows="1" ng-model="logro.contenido"></textarea>
+                        </md-input-container>
+                        <md-input-container flex-gt-sm="40" flex-sm="100">
+                            <label>Selecciona un periodo</label>
+                            <md-select required ng-model="logro.periodo">
+                            	<md-option value="1">Primero</md-option>
+                            	<md-option value="2">Segundo</md-option>
+                            	<md-option value="3">Tercero</md-option>
+                            	<md-option value="4">Cuarto</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container flex-gt-sm="50" flex-sm="100">
+                            <label for="">Fecha Vencimiento (AAAA-MM-DD) </label>
+                            <input type="text" class="" ng-model="logro.fecha_vencimiento" min="0" max="1000">
+                        </md-input-container>
+                    </form>
+                </div>
+                <div class="modal-footer" layout-align="center center">
+                    <md-button class="md-raised" ng-click="cancel()">Cancelar</md-button>
+                    <md-button class="md-raised md-primary" form="savelogros"><i class="fa fa-paper-plane"></i> Guardar</md-button>
+                </div>
+</md-dialog>

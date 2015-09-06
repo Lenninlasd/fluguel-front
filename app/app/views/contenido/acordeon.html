@@ -1,5 +1,4 @@
 <div layout="row" layout-align="center center" ng-hide="loadingContenido || hayContenido">
-
     <md-card>
         <md-card-content class="text-center">
             <h1 class="text-muted">Aún no se han agregado logros en esta clase</h1>
@@ -67,14 +66,11 @@
         </div>
     </div>
 </div>
-    <span data-toggle="modal" data-target="#modalNewLogro">
-        <md-button class="pluss md-primary md-fab" title="Nuevo Logro" data-toggle="tooltip" data-placement="top" aria-label="Nuevo Logro" ng-click="launchPostModal()">
-            <i class="fa fa-plus fa-lg" ></i>
-        </md-button>
-    </span>
+    <md-button class="pluss md-primary md-fab" title="Nuevo Logro" data-toggle="tooltip" data-placement="top" aria-label="Nuevo Logro" ng-click="launchPostModal($event)">
+        <i class="fa fa-plus fa-lg" ></i>
+    </md-button>
 
 <!-- Modales de Contenido-->
-<modal-new-logro></modal-new-logro>
 <modal-add-evaluaciones></modal-add-evaluaciones>
 <modal-eliminar></modal-eliminar>
 <modal-edit-evaluacion></modal-edit-evaluacion>
