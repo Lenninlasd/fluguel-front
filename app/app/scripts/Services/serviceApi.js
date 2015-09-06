@@ -29,7 +29,8 @@ angular.module('SerFlugel', ['ngResource'])
 		estudiantes : $resource('http://' + Config.ip + ':' + Config.port + '/' +  Config.version + '/coordinador/estudiante.json'),
 		cursos: $resource('http://' + Config.ip + ':' + Config.port + '/' + Config.version + '/coordinador/cursos.json'),
 		profesores : $resource('http://' + Config.ip + ':' + Config.port + '/' + Config.version + '/coordinador/profesor.json', {}, { update: {method: 'PUT'}}),
-		materias: $resource('http://' + Config.ip + ':' + Config.port + '/' + Config.version + '/coordinador/materias.json')
+		materias: $resource('http://' + Config.ip + ':' + Config.port + '/' + Config.version + '/coordinador/materias.json'),
+		periodos : $resource('http://' + Config.ip + ':' + Config.port + '/' + Config.version + '/coordinador/periodos.json', {}, { update: {method: 'PUT'}}),
 	};
 }])
 .factory('Analytics',['$resource', 'Config', function ContenidoFactory($resource, Config){

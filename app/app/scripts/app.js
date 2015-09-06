@@ -5,8 +5,8 @@ angular.module('CDapp',[
     'ngMessages',
     'ngCookies',
     'Dirapp',
-    'Servapp',
-    'SerFlugel'
+    'SerFlugel',
+    'flugel.views.admin.conf'
     ])
 
 .config(function($mdThemingProvider) {

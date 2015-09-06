@@ -1,0 +1,32 @@
+<div layout="column" layout-padding>
+   <md-card>
+     <md-card-content>
+         <h2 class="md-title">Configuración de periodos</h2>
+
+         <div ng-hide="periodoShow || noPeriodoShow" layout="row" layout-sm="column" layout-align="space-around">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+         </div>
+
+         <md-list ng-show="periodoShow">
+              <md-list-item class="md-3-line" ng-repeat="periodo in periodos">
+                  <div flex="100" >
+                      <h3>{{ periodo.nombre }}<span style="font-size:0.6em"> <a href="">Editar <i class="fa fa-pencil"></i></a></span></h3>
+                      <p>Desde
+                        <span class="label label-info" style="font-size:0.8em">{{ periodo.fechaInicio |date : format : timezone}}</span>
+                        hasta: <span class="label label-info" style="font-size:0.8em">{{periodo.fechaFin |date : format : timezone}} </span>
+                      </p>
+                  </div>
+                  <md-divider ></md-divider>
+              <md-list-item>
+         </md-list>
+
+         <div ng-show="noPeriodoShow">
+              <h3 class="md-title">No hay periodos configurados, haga click en <md-button class="md-fab md-mini md-primary"><i class="fa fa-plus"></i></md-button> para agregar perido. </h3>
+         </div>
+     </md-card-content>
+
+     <div ng-show="periodoShow" class="md-actions" layout="row" layout-margin layout-align="end center">
+          Agregar periodo<md-button class="md-fab md-mini md-primary"><i class="fa fa-plus"></i></md-button>
+     </div>
+   </md-card>
+ </div>
